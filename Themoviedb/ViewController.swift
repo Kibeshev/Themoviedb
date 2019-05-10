@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
  
@@ -21,6 +22,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+//        tableView.layoutMargins = UIEdgeInsets.zero
+//        tableView.separatorInset = UIEdgeInsets.zero
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -53,11 +57,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? CellMovies
+        
         let movies = self.movies[indexPath.row]
         cell?.labelTitle.text = movies.original_title
-        return cell ?? UITableViewCell()
+        cell?.labelDescriptions.text = movies.overview
+        if let image = movies.poster_path  {
+            if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)"), let imageView = cell?.imageMovies {
+                Nuke.loadImage(with: imageURL, into: imageView )
+            }
+        }
+     return cell ?? UITableViewCell()
     }
 
 
 }
+
 
