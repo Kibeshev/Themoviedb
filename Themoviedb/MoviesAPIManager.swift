@@ -14,6 +14,7 @@ import UIKit
     let total_results: Int?
     let total_pages: Int?
     let results: [Movie]?
+    let session_id: String?
 }
  struct Movie: Codable {
     let vote_count: Int?

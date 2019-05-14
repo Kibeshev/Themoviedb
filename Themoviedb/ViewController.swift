@@ -12,17 +12,26 @@ import Nuke
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
  
     @IBOutlet weak var tableView: UITableView!
-    
+    let imageTap = CellMovies()
     let manager = MoviesAPIManager()
     var movies: [Movie] = []
     
+    var pageNext: String = ""
+    
+    
     let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
+    
 // large title нужно сделать
 //    static let largeTitle: UIFont.TextStyle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        imageTap.imageMovies?.isUserInteractionEnabled = true
+        imageTap.imageMovies?.addGestureRecognizer(tapGestureRecognizer)
         tableView.tableFooterView = UIView()
+        
 //        tableView.layoutMargins = UIEdgeInsets.zero
 //        tableView.separatorInset = UIEdgeInsets.zero
         
@@ -32,6 +41,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         manager.getMovie(urlString: urlString, completion:  { getPopularMoviesResponse in
             DispatchQueue.main.async {
                 self.movies = getPopularMoviesResponse?.results ?? []
+                if let responsePage = getPopularMoviesResponse?.page {
+                    self.pageNext = String(responsePage + 1)
+                }
                 self.tableView.reloadData()
             
             }
@@ -51,8 +63,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Do any additional setup after loading the view.
       
     }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        // Your action
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
+    }
+   
+        
+
+        
+
+    @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
+
+
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastItemIndex = movies.count - 3
+        if indexPath.row == lastItemIndex {
+            loadMoreMovies()
+        }
+    }
+    func loadMoreMovies(){
+        manager.getMovie(urlString: "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e&page=\(pageNext)" ) { (getPopularMoviesResponse) in
+            DispatchQueue.main.async {
+                self.movies.append(contentsOf: getPopularMoviesResponse?.results ?? [] )
+//                self.pageNext = getPopularMoviesResponse?.page
+                if let responsePage = getPopularMoviesResponse?.page {
+                    self.pageNext = String(responsePage + 1)
+                }
+//                if getPopularMoviesResponse?.results != nil{
+                self.tableView.reloadData()
+//                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,7 +116,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
      return cell ?? UITableViewCell()
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //        let viewTwo = self.events[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? SecondViewController
+        self.navigationController?.pushViewController(controller!, animated: true)
+        controller?.movies = self.movies[indexPath.row]
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }
 
