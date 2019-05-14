@@ -17,8 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var movies: [Movie] = []
     
     var pageNext: String = ""
-    
-    
+   
     let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
     
 // large title нужно сделать
@@ -26,10 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        imageTap.imageMovies?.isUserInteractionEnabled = true
-        imageTap.imageMovies?.addGestureRecognizer(tapGestureRecognizer)
+
         tableView.tableFooterView = UIView()
         
 //        tableView.layoutMargins = UIEdgeInsets.zero
@@ -63,25 +59,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Do any additional setup after loading the view.
       
     }
-    
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
-        // Your action
-    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
-   
-        
 
-        
-
-    @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
-        sender.view?.removeFromSuperview()
-
-
-    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItemIndex = movies.count - 3
         if indexPath.row == lastItemIndex {
