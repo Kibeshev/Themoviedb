@@ -10,7 +10,7 @@ import UIKit
 import Nuke
 
 class OpenMoviesImageViewController: UIViewController {
-    var isNavigationHidden = false
+//    var isNavigationHidden = false
     
     var isOn = false {
         didSet {
@@ -55,17 +55,17 @@ class OpenMoviesImageViewController: UIViewController {
     */
 
     }
-    func tapHandler() {
-        if isNavigationHidden {
-        //показать
-            isNavigationHidden = false
-         
-        } else {
-
-           // скрыть
-            isNavigationHidden = true
-        }
-    }
+//    func tapHandler() {
+//        if isNavigationHidden {
+//        //показать
+//            isNavigationHidden = false
+//
+//        } else {
+//
+//           // скрыть
+//            isNavigationHidden = true
+//        }
+//    }
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
         isOn = !isOn
 //        let tappedImage = tapGestureRecognizer.view as! UIImageView
@@ -75,8 +75,11 @@ class OpenMoviesImageViewController: UIViewController {
     func updateUI(){
         if isOn{
             self.navigationController?.isNavigationBarHidden = true
+            self.view.backgroundColor = .black
         } else {
             self.navigationController?.isNavigationBarHidden = false
+            self.view.backgroundColor = .white
+
         }
     }
 }
