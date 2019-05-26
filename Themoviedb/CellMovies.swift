@@ -7,23 +7,28 @@
 //
 
 import UIKit
+import Nuke
 
 class CellMovies: UITableViewCell {
     
-    @IBOutlet weak var imageMovies: UIImageView!
-    
-    @IBOutlet weak var showImage: UIImageView!
-    @IBOutlet weak var labelDescriptions: UILabel!
-    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet private weak var imageMovies: UIImageView!
+    @IBOutlet private weak var showImage: UIImageView!
+    @IBOutlet private weak var labelDescriptions: UILabel!
+    @IBOutlet private weak var labelTitle: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func configure(movie: Movie) {
+        labelTitle.text = movie.original_title
+        labelDescriptions.text = movie.overview
+        if let image = movie.poster_path  {
+            if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)") {
+                Nuke.loadImage(with: imageURL, into: imageMovies)
+            }
+        }
     }
 
 }

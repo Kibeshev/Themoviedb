@@ -12,12 +12,12 @@ import Nuke
 class OpenMoviesImageViewController: UIViewController {
 //    var isNavigationHidden = false
     
-    var isOn = false {
+    private var isOn = false {
         didSet {
             updateUI()
         }
     }
-    @IBOutlet weak var openImage: UIImageView!
+    @IBOutlet private weak var openImage: UIImageView!
     
     var movies2: Movie!
     
@@ -39,11 +39,12 @@ class OpenMoviesImageViewController: UIViewController {
 
     }
 
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
         isOn = !isOn
 
     }
-    func updateUI(){
+
+    private func updateUI(){
         if isOn{
             self.navigationController?.isNavigationBarHidden = true
             self.view.backgroundColor = .black
@@ -53,4 +54,5 @@ class OpenMoviesImageViewController: UIViewController {
 
         }
     }
+
 }

@@ -7,23 +7,17 @@
 //
 
 import UIKit
-import Nuke
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var actitviti: UIActivityIndicatorView!
+    @IBOutlet private weak var actitviti: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    let imageTap = CellMovies()
-    let manager = MoviesAPIManager()
-    var movies: [Movie] = []
-    
-    var pageNext: String = ""
+    private let manager = MoviesAPIManager()
+    private var movies: [Movie] = []
+    private var pageNext: String = ""
    
-    let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
-    
-// large title нужно сделать
-//    static let largeTitle: UIFont.TextStyle
+    private let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         tableView.tableFooterView = UIView()
         
-//        tableView.layoutMargins = UIEdgeInsets.zero
-//        tableView.separatorInset = UIEdgeInsets.zero
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -55,10 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // large title похоже сделал 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        title = "Popular"
-
-        // Do any additional setup after loading the view.
-      
+        title = "Popular"      
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,16 +78,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? CellMovies
         
-        let movies = self.movies[indexPath.row]
-        cell?.labelTitle.text = movies.original_title
-        cell?.labelDescriptions.text = movies.overview
-        if let image = movies.poster_path  {
-            if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)"), let imageView = cell?.imageMovies {
-                Nuke.loadImage(with: imageURL, into: imageView )
-            }
-        }
-     return cell ?? UITableViewCell()
+        let movie = self.movies[indexPath.row]
+        cell?.configure(movie: movie)
+
+        return cell ?? UITableViewCell()
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        let viewTwo = self.events[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

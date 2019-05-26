@@ -28,8 +28,34 @@ import UIKit
     let original_title: String?
     let overview: String?
 }
+struct DetailMovieResponce: Codable {
+    let results:[Video]?
+}
+struct Video: Codable {
+    let key: String?
+}
 
 class MoviesAPIManager {
+    
+    func detailGetMovie(urlString: String, completion: @escaping (DetailMovieResponce?) -> Void) {
+        
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                let decoder = JSONDecoder()
+                if let rawResponse = try? decoder.decode(DetailMovieResponce.self, from: data) {
+                    completion(rawResponse)
+                    return
+                }
+            }
+            completion(nil)
+        }
+        task.resume()
+    }
     
     
     

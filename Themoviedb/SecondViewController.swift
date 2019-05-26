@@ -10,11 +10,11 @@ import UIKit
 import Nuke
 
 class SecondViewController: UIViewController, UIScrollViewDelegate {
-    @IBOutlet weak var descriptionsLabel: UILabel!
-    
-    @IBOutlet weak var scrollVIewOutlet: UIScrollView!
-    @IBOutlet weak var detailScreenImageMovies: UIImageView!
-    @IBOutlet weak var nameMoviesDetailScreen: UILabel!
+
+    @IBOutlet private weak var descriptionsLabel: UILabel!
+    @IBOutlet private weak var scrollVIewOutlet: UIScrollView!
+    @IBOutlet private weak var detailScreenImageMovies: UIImageView!
+    @IBOutlet private weak var nameMoviesDetailScreen: UILabel!
     
     var movies: Movie!
     
@@ -39,7 +39,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
     
 }
     // Ф-ция для картинки по нажатию , передаю данные на новый экран где картинка
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
 //        let tappedImage = tapGestureRecognizer.view as! UIImageView
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "BigMovieOpenTap") as? OpenMoviesImageViewController
