@@ -21,9 +21,8 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // убрал large title на втором экране 
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+        // убрал large title на втором экране
+        navigationItem.largeTitleDisplayMode = .never
         // чтоб открывалась картинка по нажатию
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
             detailScreenImageMovies.isUserInteractionEnabled = true

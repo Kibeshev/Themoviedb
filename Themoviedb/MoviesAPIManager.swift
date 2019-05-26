@@ -32,6 +32,7 @@ import UIKit
 class MoviesAPIManager {
     
     
+    
     func getMovie(urlString: String, completion: @escaping (GetPopularMoviesResponse?) -> Void) {
         
         guard let url = URL(string: urlString) else {

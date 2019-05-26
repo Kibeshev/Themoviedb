@@ -10,8 +10,10 @@ import UIKit
 import Nuke
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
- 
+    
+    @IBOutlet weak var actitviti: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
     let imageTap = CellMovies()
     let manager = MoviesAPIManager()
     var movies: [Movie] = []
@@ -25,6 +27,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.isHidden = true
+        actitviti.startAnimating()
 
         tableView.tableFooterView = UIView()
         
@@ -41,7 +45,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.pageNext = String(responsePage + 1)
                 }
                 self.tableView.reloadData()
-            
+                self.tableView.isHidden = false
+                self.actitviti.stopAnimating()
+                
             }
         })
             
@@ -49,11 +55,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // large title похоже сделал 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        UINavigationBar.appearance().prefersLargeTitles = true
-        UINavigationBar.appearance().largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.blue,
-             NSAttributedString.Key.font: UIFont(name: "Papyrus", size: 30) ??
-                UIFont.systemFont(ofSize: 30)]
         title = "Popular"
 
         // Do any additional setup after loading the view.
