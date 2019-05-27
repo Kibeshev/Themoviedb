@@ -27,15 +27,24 @@ import UIKit
     let original_language: String?
     let original_title: String?
     let overview: String?
+    
 }
 struct DetailMovieResponce: Codable {
-    let results:[Video]?
+    let original_language: String?
+    let budget: Int?
+    let revenue: Int?
+    let videos: VideosResponse?
+    
+}
+struct VideosResponse: Codable {
+    let results: [Video]
 }
 struct Video: Codable {
     let key: String?
 }
 
 class MoviesAPIManager {
+   
     
     func detailGetMovie(urlString: String, completion: @escaping (DetailMovieResponce?) -> Void) {
         
