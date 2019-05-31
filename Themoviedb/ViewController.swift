@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     private let manager = MoviesAPIManager()
-    private var movies: [Movie] = []
+    var movies: [Movie] = []
     private var pageNext: String = ""
    
     private let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             loadMoreMovies()
         }
     }
-    func loadMoreMovies(){
+    private func loadMoreMovies(){
         manager.getMovie(urlString: "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e&page=\(pageNext)" ) { (getPopularMoviesResponse) in
             DispatchQueue.main.async {
                 self.movies.append(contentsOf: getPopularMoviesResponse?.results ?? [] )

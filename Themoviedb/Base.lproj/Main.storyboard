@@ -320,6 +320,38 @@
             </objects>
             <point key="canvasLocation" x="303.19999999999999" y="761.46926536731644"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="sFU-Bd-v9E">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hSf-GA-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="webViewID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BVm-Xl-LPk" customClass="WebViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ElV-za-0yi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mNS-Sl-r0o">
+                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="EY4-Lt-L8d"/>
+                                    <constraint firstAttribute="height" constant="20" id="rrS-0U-XpM"/>
+                                </constraints>
+                                <color key="color" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mNS-Sl-r0o" firstAttribute="centerX" secondItem="tAA-Is-UwV" secondAttribute="centerX" id="0bk-mt-2Rq"/>
+                            <constraint firstItem="mNS-Sl-r0o" firstAttribute="centerY" secondItem="tAA-Is-UwV" secondAttribute="centerY" id="dIh-JA-PRQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tAA-Is-UwV"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="mNS-Sl-r0o" id="iw5-YC-8iU"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="302.89855072463769" y="1520.0892857142856"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="jlz-No-Fix">
             <objects>

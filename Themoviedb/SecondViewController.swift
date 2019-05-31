@@ -9,8 +9,6 @@
 import UIKit
 import Nuke
 import Foundation
-//import AVKit
-//import AVFoundation
 
 
 class SecondViewController: UIViewController, UIScrollViewDelegate{
@@ -25,25 +23,31 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet private weak var detailScreenImageMovies: UIImageView!
     @IBOutlet private weak var nameMoviesDetailScreen: UILabel!
     
-    @IBOutlet weak var showImagesButton: UIButton!
-    @IBOutlet weak var playVideoButtonSettingsBorderColor: UIButton!
+    @IBOutlet private weak var showImagesButton: UIButton!
+    @IBOutlet private weak var playVideoButtonSettingsBorderColor: UIButton!
     //    var detailMovies = DetailMovieResponce!
     var detailMovie: DetailMovieResponce!
     var movies: Movie!
     private var detailManager = MoviesAPIManager()
-    private let url = "https://api.themoviedb.org/3/movie/458156?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response=videos"
     
     
     
-    @IBAction func playVideoButton(_ sender: Any) {
+    
+    @IBAction private func playVideoButton(_ sender: Any) {
 //        let url1 = URL(string: "\("http://youtube.com/watch?v=")\(viedeos.first)")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "webViewID") as? WebViewController
+        self.navigationController?.pushViewController(controller!, animated: true)
+        controller?.webViewVideo = self.detailMovie.videos?.results.first
         
-
+        
     }
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         playVideoButtonSettingsBorderColor.backgroundColor = .clear
         playVideoButtonSettingsBorderColor.layer.borderWidth = 0.5
         playVideoButtonSettingsBorderColor.layer.borderColor = UIColor.gray.cgColor
@@ -52,27 +56,26 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
         showImagesButton.layer.borderWidth = 0.5
         showImagesButton.layer.borderColor = UIColor.gray.cgColor
         
-       
-
-        detailManager.detailGetMovie(urlString: url, completion: { detailMovieResponce in
-             DispatchQueue.main.async {
-                if let v = detailMovieResponce?.budget {
-                    self.budgetLabel.text = ("$\(v)")
+        if let moviesID = movies.id {
+            let url = "https://api.themoviedb.org/3/movie/\(moviesID)?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response=videos"
             
+            detailManager.detailGetMovie(urlString: url, completion: { detailMovieResponce in
+                DispatchQueue.main.async {
+                    
+                    self.detailMovie = detailMovieResponce
+                    if let v = detailMovieResponce?.budget {
+                        self.budgetLabel.text = ("$\(v)")
+                        
+                    }
+                    if let a = detailMovieResponce?.revenue {
+                        self.revenueLabel.text = ("$\(Float(a))")
+                    }
+                    self.originalLanguageLabel.text = detailMovieResponce?.original_language
+                    
                 }
-                if let a = detailMovieResponce?.revenue {
-                    self.revenueLabel.text = ("$\(Float(a))")
-                }
-                self.originalLanguageLabel.text = detailMovieResponce?.original_language
-                
-                
-               
-            }
-        })
-        
-     
-       
-    
+            })
+        }
+      
         // убрал large title на втором экране
         navigationItem.largeTitleDisplayMode = .never
         // чтоб открывалась картинка по нажатию
