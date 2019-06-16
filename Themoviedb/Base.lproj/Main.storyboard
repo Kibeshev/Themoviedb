@@ -40,7 +40,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="su9-JY-ws3">
-                                                    <rect key="frame" x="99" y="15.000000000000002" width="150" height="19.666666666666671"/>
+                                                    <rect key="frame" x="99" y="15.000000000000002" width="189" height="19.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="70G-vK-2nI">
-                                                    <rect key="frame" x="351" y="57.999999999999993" width="8" height="13.666666666666664"/>
+                                                    <rect key="frame" x="351" y="57.999999999999993" width="47" height="13.666666666666664"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -232,6 +232,9 @@
                                         <state key="normal" title="Show Images">
                                             <color key="titleShadowColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="showImagesButton:" destination="uOh-oK-SIj" eventType="touchUpInside" id="0vo-1G-98R"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6p-2d-6Jz">
                                         <rect key="frame" x="7" y="436" width="375" height="60"/>
@@ -320,10 +323,38 @@
             </objects>
             <point key="canvasLocation" x="303.19999999999999" y="761.46926536731644"/>
         </scene>
+        <!--Image Carusele View Controller-->
+        <scene sceneID="mam-vY-Rq7">
+            <objects>
+                <viewController storyboardIdentifier="imageCarusele" id="Fgs-Ii-sEH" customClass="ImageCaruseleViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h0u-qz-4l4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-2H-5dY">
+                                <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pf8-2H-5dY" firstAttribute="centerX" secondItem="Em5-nA-kQr" secondAttribute="centerX" id="4yF-Xm-3b5"/>
+                            <constraint firstItem="pf8-2H-5dY" firstAttribute="height" secondItem="h0u-qz-4l4" secondAttribute="height" id="Aiz-S4-VsE"/>
+                            <constraint firstItem="pf8-2H-5dY" firstAttribute="centerY" secondItem="Em5-nA-kQr" secondAttribute="centerY" id="Qmq-NV-ype"/>
+                            <constraint firstItem="pf8-2H-5dY" firstAttribute="width" secondItem="h0u-qz-4l4" secondAttribute="width" id="aeC-wS-ocp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Em5-nA-kQr"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollImages" destination="pf8-2H-5dY" id="CP5-l0-VOJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbT-di-DWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1332" y="773"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="sFU-Bd-v9E">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hSf-GA-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="webViewID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BVm-Xl-LPk" customClass="WebViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ElV-za-0yi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -349,8 +380,9 @@
                         <outlet property="activityIndicator" destination="mNS-Sl-r0o" id="iw5-YC-8iU"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hSf-GA-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302.89855072463769" y="1520.0892857142856"/>
+            <point key="canvasLocation" x="303" y="1484"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jlz-No-Fix">

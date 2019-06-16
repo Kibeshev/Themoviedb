@@ -14,6 +14,16 @@ import Foundation
 class SecondViewController: UIViewController, UIScrollViewDelegate{
 
     
+    @IBAction func showImagesButton(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "imageCarusele") as? ImageCaruseleViewController
+        self.navigationController?.pushViewController(controller!, animated: true)
+        controller?.movies = self.movies
+//        let ImageCaruseleViewController:UIViewController = UIViewController()
+//        self.navigationController?.pushViewController(ImageCaruseleViewController, animated: true)
+//        self.navigationController?.popViewController(animated: true)
+        }
     @IBOutlet private weak var originalLanguageLabel: UILabel!
     @IBOutlet private weak var runtimeLabel: UILabel!
     @IBOutlet private weak var budgetLabel: UILabel!
@@ -25,8 +35,8 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet private weak var showImagesButton: UIButton!
     @IBOutlet private weak var playVideoButtonSettingsBorderColor: UIButton!
-    //    var detailMovies = DetailMovieResponce!
-    var detailMovie: DetailMovieResponce!
+    //    var detailMovies = DetailMovieResponse!
+    var detailMovie: DetailMovieResponse!
     var movies: Movie!
     private var detailManager = MoviesAPIManager()
     
@@ -62,13 +72,18 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
             detailManager.detailGetMovie(urlString: url, completion: { detailMovieResponce in
                 DispatchQueue.main.async {
                     
+                    let formater = NumberFormatter()
+                    formater.groupingSeparator = "."
+                    formater.numberStyle = .decimal
                     self.detailMovie = detailMovieResponce
                     if let v = detailMovieResponce?.budget {
-                        self.budgetLabel.text = ("$\(v)")
+                        let formattedNumber = formater.string(from: NSNumber(value: v))
+                        self.budgetLabel.text = "$\(formattedNumber!)"
                         
                     }
                     if let a = detailMovieResponce?.revenue {
-                        self.revenueLabel.text = ("$\(Float(a))")
+                        let formattedNumber = formater.string(from: NSNumber(value: a))
+                        self.revenueLabel.text = "$\(formattedNumber!)"
                     }
                     self.originalLanguageLabel.text = detailMovieResponce?.original_language
                     

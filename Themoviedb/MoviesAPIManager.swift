@@ -27,14 +27,23 @@ import UIKit
     let original_language: String?
     let original_title: String?
     let overview: String?
+    let detailMovieResponce: DetailMovieResponse?
     
 }
-struct DetailMovieResponce: Codable {
+struct DetailMovieResponse: Codable {
     let original_language: String?
     let budget: Int?
     let revenue: Int?
     let videos: VideosResponse?
+    let image: [Posters]?
     
+}
+struct GetMovieImagesResponse: Codable {
+    let posters: [Posters]
+}
+struct Posters: Codable {
+    let file_path: String?
+    let aspect_ratio: Double?
 }
 struct VideosResponse: Codable {
     let results: [Video]
@@ -44,9 +53,29 @@ struct Video: Codable {
 }
 
 class MoviesAPIManager {
+    
+    func getMovieImages(id: Int, completion: @escaping (GetMovieImagesResponse?) -> Void) {
+         let urlString = "https://api.themoviedb.org/3/movie/\(id)/images?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response&language=en"
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                let decoder = JSONDecoder()
+                if let rawResponse = try? decoder.decode(GetMovieImagesResponse.self, from: data) {
+                    completion(rawResponse)
+                    return
+                }
+            }
+            completion(nil)
+        }
+        task.resume()
+    }
    
     
-    func detailGetMovie(urlString: String, completion: @escaping (DetailMovieResponce?) -> Void) {
+    func detailGetMovie(urlString: String, completion: @escaping (DetailMovieResponse?) -> Void) {
         
         guard let url = URL(string: urlString) else {
             completion(nil)
@@ -56,7 +85,7 @@ class MoviesAPIManager {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
-                if let rawResponse = try? decoder.decode(DetailMovieResponce.self, from: data) {
+                if let rawResponse = try? decoder.decode(DetailMovieResponse.self, from: data) {
                     completion(rawResponse)
                     return
                 }
