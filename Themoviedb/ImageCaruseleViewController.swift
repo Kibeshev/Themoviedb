@@ -16,35 +16,49 @@ class ImageCaruseleViewController: UIViewController {
 //    var detailMovie: DetailMovieResponse!
     private var detailManager = MoviesAPIManager()
     var movies: Movie!
-    var apsectRatiio: Posters!
+    var apsectRatio: Posters!
 //    var getImages: DetailMovieResponse!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         if let moviesID = movies.id {
- 
+            // получаем данные с сервера для нужного фильма
             detailManager.getMovieImages(id: moviesID, completion: { getImagesCaruseleResponce in
                 DispatchQueue.main.async {
-
+                    // задаем ширину и высоту
+                   
+                    //получаем массив постерс
                     if let images = getImagesCaruseleResponce?.posters {
+                        //проходим циколом по массиву
                         for i in 0..<images.count {
+                            //
                             let xOrigin = UIApplication.shared.keyWindow!.bounds.width * CGFloat(i)
+                            
+                            //  создаем imageView
                             let imageCarousel = UIImageView()
                             imageCarousel.contentMode = .scaleAspectFit
                             imageCarousel.isUserInteractionEnabled = true
-                            imageCarousel.frame = CGRect(x: xOrigin, y: 0, width: UIApplication.shared.keyWindow!.bounds.width, height: 240)
+                            let width = UIApplication.shared.keyWindow!.bounds.width
+                            let height = width / CGFloat(images[i].aspect_ratio!)
+//                           self.scrollImages.center = imageCarousel.center
+                            imageCarousel.frame = CGRect(x: xOrigin, y: (self.scrollImages.bounds.height - imageCarousel.bounds.height)/24, width: width , height: height)
                             self.scrollImages.addSubview(imageCarousel)
                             if let urlStr = images[i].file_path {
                                 if let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(urlStr)") {
                                     Nuke.loadImage(with: imageURL, into: imageCarousel )
                                 }
                             }
+                            //чтоб могли листать
+                            self.scrollImages.isPagingEnabled = true
+                            // задаем количество перелистываний для каждой картинки в сколлле
+                            self.scrollImages.contentSize = CGSize(width:
+                                UIApplication.shared.keyWindow!.bounds.width * CGFloat(images.count), height: height)
                         }
-                        self.scrollImages.isPagingEnabled = true
-                        self.scrollImages.contentSize = CGSize(width:
-                            UIApplication.shared.keyWindow!.bounds.width * CGFloat(images.count), height: 240 )
+//
                     }
 
                 }
