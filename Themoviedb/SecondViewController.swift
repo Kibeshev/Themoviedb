@@ -71,7 +71,9 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
             
             detailManager.detailGetMovie(urlString: url, completion: { detailMovieResponce in
                 DispatchQueue.main.async {
-                    
+                    if let runtime = detailMovieResponce?.runtime{
+                    self.runtimeLabel.text = String(describing: "\(runtime) minute")
+                    }
                     let formater = NumberFormatter()
                     formater.groupingSeparator = "."
                     formater.numberStyle = .decimal

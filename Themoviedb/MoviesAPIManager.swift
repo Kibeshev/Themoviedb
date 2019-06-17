@@ -36,6 +36,7 @@ struct DetailMovieResponse: Codable {
     let revenue: Int?
     let videos: VideosResponse?
     let image: [Posters]?
+    let runtime: Int?
     
 }
 struct GetMovieImagesResponse: Codable {
