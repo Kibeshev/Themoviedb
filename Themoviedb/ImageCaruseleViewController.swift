@@ -44,8 +44,8 @@ class ImageCaruseleViewController: UIViewController {
                             imageCarousel.isUserInteractionEnabled = true
                             let width = UIApplication.shared.keyWindow!.bounds.width
                             let height = width / CGFloat(images[i].aspect_ratio!)
-//                           self.scrollImages.center = imageCarousel.center
-                            imageCarousel.frame = CGRect(x: xOrigin, y: (self.scrollImages.bounds.height - imageCarousel.bounds.height)/24, width: width , height: height)
+                            let yOrirgin = (self.scrollImages.bounds.height - height)/2
+                            imageCarousel.frame = CGRect(x: xOrigin, y: yOrirgin, width: width , height: height)
                             self.scrollImages.addSubview(imageCarousel)
                             if let urlStr = images[i].file_path {
                                 if let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(urlStr)") {
