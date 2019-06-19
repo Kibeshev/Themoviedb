@@ -24,6 +24,10 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
 //        self.navigationController?.pushViewController(ImageCaruseleViewController, animated: true)
 //        self.navigationController?.popViewController(animated: true)
         }
+
+    @IBOutlet weak var stackViewBudget: UIStackView!
+    @IBOutlet weak var stackViewRevenue: UIStackView!
+    @IBOutlet weak var revenueLabelTitle: UILabel!
     @IBOutlet private weak var originalLanguageLabel: UILabel!
     @IBOutlet private weak var runtimeLabel: UILabel!
     @IBOutlet private weak var budgetLabel: UILabel!
@@ -56,7 +60,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         
         playVideoButtonSettingsBorderColor.backgroundColor = .clear
         playVideoButtonSettingsBorderColor.layer.borderWidth = 0.5
@@ -81,11 +85,22 @@ class SecondViewController: UIViewController, UIScrollViewDelegate{
                     if let v = detailMovieResponce?.budget {
                         let formattedNumber = formater.string(from: NSNumber(value: v))
                         self.budgetLabel.text = "$\(formattedNumber!)"
+                        if v == 0 {
+                            self.stackViewBudget.arrangedSubviews.forEach({ (view) in
+                                view.removeFromSuperview()
+                            })
+                        }
                         
                     }
                     if let a = detailMovieResponce?.revenue {
                         let formattedNumber = formater.string(from: NSNumber(value: a))
                         self.revenueLabel.text = "$\(formattedNumber!)"
+                        if a < 100 {
+                            self.stackViewRevenue.arrangedSubviews.forEach({ (view) in
+                                view.removeFromSuperview()
+                            })
+                            
+                        }
                     }
                     self.originalLanguageLabel.text = detailMovieResponce?.original_language
                     

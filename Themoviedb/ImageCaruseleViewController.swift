@@ -10,7 +10,11 @@ import UIKit
 import Nuke
 
 class ImageCaruseleViewController: UIViewController {
-    
+    var isOn = false {
+        didSet{
+            updateUI()
+        }
+    }
     @IBOutlet weak var scrollImages: UIScrollView!
     
 //    var detailMovie: DetailMovieResponse!
@@ -22,8 +26,12 @@ class ImageCaruseleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tap)
+
         
-        
+
         
         if let moviesID = movies.id {
             // получаем данные с сервера для нужного фильма
@@ -64,16 +72,27 @@ class ImageCaruseleViewController: UIViewController {
                 }
             })
         
-    }
-        
-      
+       }
+  
 //        let view = UIView()
 //        self.view.frame = CGRect(x: 10, y: 10, width: 200, height: 40)
 //        self.view.addSubview(view)
 
         // Do any additional setup after loading the view.
     }
-    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        isOn = !isOn
+      }
+
+    func updateUI(){
+        if isOn{
+            self.navigationController?.isNavigationBarHidden = true
+            self.view.backgroundColor = .black
+        } else {
+            self.navigationController?.isNavigationBarHidden = false
+            self.view.backgroundColor = .white
+        }
+    }
 
     /*
     // MARK: - Navigation
