@@ -48,6 +48,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
         configureUI()
         loadData()
     }
+    
     // MARK: - Actions
     
     @IBAction private func playVideoButton(_ sender: Any) {
