@@ -13,7 +13,7 @@
 		B583F1A8228AB89B0053016E /* OpenMoviesImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */; };
 		B5BD962322831CFC004CFEC8 /* CellMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BD962222831CFC004CFEC8 /* CellMovies.swift */; };
 		B5FE26762281C6D500B378BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE26752281C6D500B378BA /* AppDelegate.swift */; };
-		B5FE26782281C6D500B378BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE26772281C6D500B378BA /* ViewController.swift */; };
+		B5FE26782281C6D500B378BA /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE26772281C6D500B378BA /* MoviesViewController.swift */; };
 		B5FE267B2281C6D500B378BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5FE26792281C6D500B378BA /* Main.storyboard */; };
 		B5FE267D2281C6D900B378BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5FE267C2281C6D900B378BA /* Assets.xcassets */; };
 		B5FE26802281C6D900B378BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5FE267E2281C6D900B378BA /* LaunchScreen.storyboard */; };
@@ -31,7 +31,7 @@
 		B5BD962222831CFC004CFEC8 /* CellMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovies.swift; sourceTree = "<group>"; };
 		B5FE26722281C6D500B378BA /* Themoviedb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Themoviedb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5FE26752281C6D500B378BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5FE26772281C6D500B378BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5FE26772281C6D500B378BA /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		B5FE267A2281C6D500B378BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5FE267C2281C6D900B378BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5FE267F2281C6D900B378BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				B579BC7A229FE31C009DE95D /* WebViewController.swift */,
-				B5FE26772281C6D500B378BA /* ViewController.swift */,
+				B5FE26772281C6D500B378BA /* MoviesViewController.swift */,
 				B579BC7C22A24614009DE95D /* ImageCaruseleViewController.swift */,
 				B539F0062288647600EB4AA0 /* MovieDetailViewController.swift */,
 			);
@@ -122,6 +122,7 @@
 			buildConfigurationList = B5FE26842281C6D900B378BA /* Build configuration list for PBXNativeTarget "Themoviedb" */;
 			buildPhases = (
 				F849A744265B9A0A3A2D17B3 /* [CP] Check Pods Manifest.lock */,
+				B5857D5622BFBFDB0087B32D /* SwiftLint */,
 				B5FE266E2281C6D500B378BA /* Sources */,
 				B5FE266F2281C6D500B378BA /* Frameworks */,
 				B5FE26702281C6D500B378BA /* Resources */,
@@ -201,6 +202,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B5857D5622BFBFDB0087B32D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		F849A744265B9A0A3A2D17B3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,7 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5FE26782281C6D500B378BA /* ViewController.swift in Sources */,
+				B5FE26782281C6D500B378BA /* MoviesViewController.swift in Sources */,
 				B583F1A8228AB89B0053016E /* OpenMoviesImageViewController.swift in Sources */,
 				B5FE26882281C7D700B378BA /* MoviesAPIManager.swift in Sources */,
 				B5BD962322831CFC004CFEC8 /* CellMovies.swift in Sources */,

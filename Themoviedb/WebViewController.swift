@@ -9,29 +9,28 @@
 import UIKit
 import WebKit
 
-
 class WebViewController: UIViewController {
-    
-    //MARK: - Subviews
-    
+
+    // MARK: - Subviews
+
     @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
-    
-    //MARK: - Priperties
-    
+
+    // MARK: - Priperties
+
     private var webView: WKWebView!
     var webViewVideo: Video!
 
     // MARK: - UIViewController
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureWebView()
         loadUrl()
     }
-    
+
     // MARK: - Private methods
-    
-    private func configureWebView(){
+
+    private func configureWebView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         view.addSubview(webView)
@@ -44,10 +43,10 @@ class WebViewController: UIViewController {
         webView.navigationDelegate = self
         activityIndicator.color = .gray
     }
-    
-    private func loadUrl(){
+
+    private func loadUrl() {
         if let key = webViewVideo.key {
-            let myURL = URL(string:"http://youtube.com/watch?v=\(key)")
+            let myURL = URL(string: "http://youtube.com/watch?v=\(key)")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
             activityIndicator.startAnimating()
@@ -55,11 +54,11 @@ class WebViewController: UIViewController {
     }
 }
 
-//MARK:-WKNavigationDelegate
+// MARK: - WKNavigationDelegate
 
 extension WebViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.isHidden = false
         activityIndicator.stopAnimating()
     }

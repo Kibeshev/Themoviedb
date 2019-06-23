@@ -28,7 +28,7 @@ import UIKit
     let original_title: String?
     let overview: String?
     let detailMovieResponce: DetailMovieResponse?
-    
+
 }
 struct DetailMovieResponse: Codable {
     let original_language: String?
@@ -37,7 +37,7 @@ struct DetailMovieResponse: Codable {
     let videos: VideosResponse?
     let image: [Posters]?
     let runtime: Int?
-    
+
 }
 struct GetMovieImagesResponse: Codable {
     let posters: [Posters]
@@ -54,14 +54,14 @@ struct Video: Codable {
 }
 
 class MoviesAPIManager {
-    
+
     func getMovieImages(id: Int, completion: @escaping (GetMovieImagesResponse?) -> Void) {
          let urlString = "https://api.themoviedb.org/3/movie/\(id)/images?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response&language=en"
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
         }
-        
+
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
@@ -74,15 +74,14 @@ class MoviesAPIManager {
         }
         task.resume()
     }
-   
-    
+
     func detailGetMovie(urlString: String, completion: @escaping (DetailMovieResponse?) -> Void) {
-        
+
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
         }
-        
+
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
@@ -95,16 +94,14 @@ class MoviesAPIManager {
         }
         task.resume()
     }
-    
-    
-    
+
     func getMovie(urlString: String, completion: @escaping (GetPopularMoviesResponse?) -> Void) {
-        
+
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
         }
-        
+
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
@@ -117,5 +114,5 @@ class MoviesAPIManager {
         }
         task.resume()
     }
-    
+
 }
