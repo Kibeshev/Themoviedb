@@ -35,8 +35,17 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             webView.load(myRequest)
             
         }
-       
+        webView.isHidden = true
+        activityIndicator.startAnimating()
+        activityIndicator.color = .gray
+        webView.navigationDelegate = self 
         
+        
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
+        webView.isHidden = false
+        activityIndicator.stopAnimating()
     }
 
 }

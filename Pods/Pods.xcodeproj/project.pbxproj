@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CB4AA2D096C860308324AF850B96CC0 /* ImagePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945EEFE6D3485A0D46244E35D75C2F77 /* ImagePipeline.swift */; };
-		21FB8A36A67775DDDB163B071DA7F127 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80676EB3E05A0028855D5E0362B89668 /* DataCache.swift */; };
-		24A6C2032E48F18C8289228254E87D9E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64395B219EB37CEC4C4F430D5B38C651 /* ImageCache.swift */; };
+		01746F91871DF07B9505059D35804CFD /* ImagePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945EEFE6D3485A0D46244E35D75C2F77 /* ImagePipeline.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0ACA518C7D7F8A1A520C8FCADB4EA491 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FBEEF3BF16902669AC474ECBB64AF /* ImageRequest.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		27B71505AFD2BACFA689C7896A226F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		28C1DFF70C9A9792EE549701EA4708E4 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C7BE4ED7D85E061E48EA4178513382 /* DataLoader.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		35A9F39BD0B3D84620984479FDC3B74B /* ImageDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CC16F5E508E2C7CDEB03A42D155C54 /* ImageDecoding.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		37FE3FEC2B05C85B3C292EF9B9B2F11F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		604E42993F7D62D8AAA3EE85489F92E6 /* Nuke-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B7E65320AEED758505091745E5C46D /* Nuke-dummy.m */; };
+		4E6BC7F6AC0AF7A62FC286DDDE346DF1 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A72C21A89D81EED84ABBFC0FA3E5 /* ImageView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4F77A59449076050120BE9C0CB4D0FE7 /* ImagePreheater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3002FD055C9485CA4B573081D886AD74 /* ImagePreheater.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		646848F2BE805018CF599DF02AC6CC23 /* Nuke-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B7E65320AEED758505091745E5C46D /* Nuke-dummy.m */; };
 		6CFBB9F6543807567CE9EC20E9A6AB51 /* Pods-Themoviedb-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4344185DE1B941F339D3737E0A04C3E0 /* Pods-Themoviedb-dummy.m */; };
-		A3B109CA0D06463BF409E18E88154901 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C7BE4ED7D85E061E48EA4178513382 /* DataLoader.swift */; };
-		A5E11C6C69C96F61539808AA278C264A /* ImageDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CC16F5E508E2C7CDEB03A42D155C54 /* ImageDecoding.swift */; };
-		AE2FC569F0123B95F16AE857E797FB12 /* ImagePreheater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3002FD055C9485CA4B573081D886AD74 /* ImagePreheater.swift */; };
+		6E95BF50E9486A24574E1EC35B2EA1D7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64395B219EB37CEC4C4F430D5B38C651 /* ImageCache.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		ADA9A82DB326FDFCE362DA8E4409A037 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80676EB3E05A0028855D5E0362B89668 /* DataCache.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C23AFADC37ED7AD845FA423E3ABCA765 /* ImageProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DB9728F210D03E500D9961CF5319E /* ImageProcessing.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CE30BBFEB016EA5FA60803D40321B50B /* Pods-Themoviedb-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E15594D44FC044CC6F2AAD7664A0C7BD /* Pods-Themoviedb-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2CB8E2465E31188852C4CDA3A3CAD4E /* ImageTaskMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005724CAAD96F2FA8CFA1FD1D493DCFC /* ImageTaskMetrics.swift */; };
-		D63B91029499BBD410FB7980B759A8C4 /* ImageProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DB9728F210D03E500D9961CF5319E /* ImageProcessing.swift */; };
-		DF440F4C30A8BE05B8125EAC1670EF44 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FBEEF3BF16902669AC474ECBB64AF /* ImageRequest.swift */; };
+		D37DDA272879BFC7FA851A49753FE233 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49AF9DE820B04997DB575535EF189E /* Internal.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		EB364D0D1EEA011ACBEA69D11A18EAFC /* Nuke-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 12E67807C82114194FB2E567746E194E /* Nuke-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F00846E213899CB55A69FF796E8529E5 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A72C21A89D81EED84ABBFC0FA3E5 /* ImageView.swift */; };
-		F85AF429C2EAB624C2AD9DE91F855B60 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49AF9DE820B04997DB575535EF189E /* Internal.swift */; };
+		F332D388CC3572E1608D6AFD8E92F9C0 /* ImageTaskMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005724CAAD96F2FA8CFA1FD1D493DCFC /* ImageTaskMetrics.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,7 +219,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E38F53982A28722A2ABA14392FF55F9E /* Build configuration list for PBXNativeTarget "Nuke" */;
 			buildPhases = (
-				43BEB78176D3B65D92BD257EE9AA4953 /* Sources */,
+				9FC3B1F866EAC510D5BFBC7CC80D2AD3 /* Sources */,
 				6CAE566164063D9A7C119C045CF8B951 /* Frameworks */,
 				91E120762193FF2E9A3C4790D56AD940 /* Headers */,
 			);
@@ -261,11 +261,11 @@
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
-				Base,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
 			productRefGroup = 03E1024C37DB7CFF5CD4D42DD7BC13B1 /* Products */;
@@ -279,22 +279,22 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		43BEB78176D3B65D92BD257EE9AA4953 /* Sources */ = {
+		9FC3B1F866EAC510D5BFBC7CC80D2AD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21FB8A36A67775DDDB163B071DA7F127 /* DataCache.swift in Sources */,
-				A3B109CA0D06463BF409E18E88154901 /* DataLoader.swift in Sources */,
-				24A6C2032E48F18C8289228254E87D9E /* ImageCache.swift in Sources */,
-				A5E11C6C69C96F61539808AA278C264A /* ImageDecoding.swift in Sources */,
-				0CB4AA2D096C860308324AF850B96CC0 /* ImagePipeline.swift in Sources */,
-				AE2FC569F0123B95F16AE857E797FB12 /* ImagePreheater.swift in Sources */,
-				D63B91029499BBD410FB7980B759A8C4 /* ImageProcessing.swift in Sources */,
-				DF440F4C30A8BE05B8125EAC1670EF44 /* ImageRequest.swift in Sources */,
-				D2CB8E2465E31188852C4CDA3A3CAD4E /* ImageTaskMetrics.swift in Sources */,
-				F00846E213899CB55A69FF796E8529E5 /* ImageView.swift in Sources */,
-				F85AF429C2EAB624C2AD9DE91F855B60 /* Internal.swift in Sources */,
-				604E42993F7D62D8AAA3EE85489F92E6 /* Nuke-dummy.m in Sources */,
+				ADA9A82DB326FDFCE362DA8E4409A037 /* DataCache.swift in Sources */,
+				28C1DFF70C9A9792EE549701EA4708E4 /* DataLoader.swift in Sources */,
+				6E95BF50E9486A24574E1EC35B2EA1D7 /* ImageCache.swift in Sources */,
+				35A9F39BD0B3D84620984479FDC3B74B /* ImageDecoding.swift in Sources */,
+				01746F91871DF07B9505059D35804CFD /* ImagePipeline.swift in Sources */,
+				4F77A59449076050120BE9C0CB4D0FE7 /* ImagePreheater.swift in Sources */,
+				C23AFADC37ED7AD845FA423E3ABCA765 /* ImageProcessing.swift in Sources */,
+				0ACA518C7D7F8A1A520C8FCADB4EA491 /* ImageRequest.swift in Sources */,
+				F332D388CC3572E1608D6AFD8E92F9C0 /* ImageTaskMetrics.swift in Sources */,
+				4E6BC7F6AC0AF7A62FC286DDDE346DF1 /* ImageView.swift in Sources */,
+				D37DDA272879BFC7FA851A49753FE233 /* Internal.swift in Sources */,
+				646848F2BE805018CF599DF02AC6CC23 /* Nuke-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -518,6 +519,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

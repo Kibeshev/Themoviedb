@@ -1,5 +1,5 @@
 project 'Themoviedb.xcodeproj'
-
+inhibit_all_warnings!
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 

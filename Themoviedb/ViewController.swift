@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        let viewTwo = self.events[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? SecondViewController
+        let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? MovieDetailViewController
         self.navigationController?.pushViewController(controller!, animated: true)
         controller?.movies = self.movies[indexPath.row]
         
