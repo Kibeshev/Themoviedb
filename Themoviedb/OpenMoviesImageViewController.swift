@@ -10,38 +10,56 @@ import UIKit
 import Nuke
 
 class OpenMoviesImageViewController: UIViewController {
-//    var isNavigationHidden = false
+
+    // MARK: - Subviews
+
+    @IBOutlet private weak var openImage: UIImageView!
+
+    // MARK: - Properties
 
     private var isOn = false {
         didSet {
             updateUI()
         }
     }
-    @IBOutlet private weak var openImage: UIImageView!
+    var movies2: Movie?
 
-    var movies2: Movie!
+    // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // убрал larde title
-        navigationItem.largeTitleDisplayMode = .never
-        title = "Poster"
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        openImage.isUserInteractionEnabled = true
-        view.addGestureRecognizer(tapGestureRecognizer)
+        configureViewController()
+        getImage()
+    }
 
-        if let image = movies2.poster_path {
-            if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)"), let imageView = openImage {
-                Nuke.loadImage(with: imageURL, into: imageView )
-            }
+    // MARK: - Actions
 
-        }
+    @objc
+    private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        isOn.toggle()
 
     }
 
-    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        isOn = !isOn
+    // MARK: - Private methods
 
+    private func getImage() {
+        if let image = movies2?.poster_path {
+            if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)"),
+                let imageView = openImage {
+                Nuke.loadImage(with: imageURL, into: imageView )
+            }
+        }
+    }
+
+    private func configureViewController() {
+        // убрал larde title
+        navigationItem.largeTitleDisplayMode = .never
+        title = "Poster"
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(
+            imageTapped(tapGestureRecognizer:)
+            ))
+        openImage.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
 
     private func updateUI() {
@@ -51,8 +69,6 @@ class OpenMoviesImageViewController: UIViewController {
         } else {
             self.navigationController?.isNavigationBarHidden = false
             self.view.backgroundColor = .white
-
         }
     }
-
 }

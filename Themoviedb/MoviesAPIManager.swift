@@ -19,7 +19,7 @@ import UIKit
  struct Movie: Codable {
     let vote_count: Int?
     let id: Int?
-    let video: Bool?
+    let video: Bool
     let vote_average: Double?
     let title: String?
     let popularity: Double?
@@ -56,7 +56,11 @@ struct Video: Codable {
 class MoviesAPIManager {
 
     func getMovieImages(id: Int, completion: @escaping (GetMovieImagesResponse?) -> Void) {
-         let urlString = "https://api.themoviedb.org/3/movie/\(id)/images?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response&language=en"
+        let urlString = """
+        https://api.themoviedb.org/3/movie/\(
+        id
+        )/images?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response&language=en
+        """
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
