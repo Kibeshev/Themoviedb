@@ -11,15 +11,21 @@ import Nuke
 
 class CellMovies: UITableViewCell {
 
+    // MARK: - Subviews
+
     @IBOutlet private weak var imageMovies: UIImageView!
     @IBOutlet private weak var showImage: UIImageView!
     @IBOutlet private weak var labelDescriptions: UILabel!
     @IBOutlet private weak var labelTitle: UILabel!
 
+    // MARK: - UIViewController
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+
+    // MARK: - Methods
 
     func configure(movie: Movie) {
         labelTitle.text = movie.original_title

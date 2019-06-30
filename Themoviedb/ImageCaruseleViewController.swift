@@ -11,16 +11,22 @@ import Nuke
 
 class ImageCaruseleViewController: UIViewController {
 
+    // MARK: - Subviews
+
     @IBOutlet private weak var scrollImages: UIScrollView!
 
-    private var detailManager = MoviesAPIManager()
+    // MARK: - Properties
+
     var movies: Movie?
-    var apsectRatio: Posters?
-    var isOn = false {
+    private var detailManager = MoviesAPIManager()
+    private var apsectRatio: Posters?
+    private var isOn = false {
         didSet {
             updateUI()
         }
     }
+
+    // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +34,22 @@ class ImageCaruseleViewController: UIViewController {
         getImages()
     }
 
-    func configureViewController() {
+    // MARK: - Actions
+
+    @objc
+    func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        isOn.toggle()
+    }
+
+    // MARK: - Private methods
+
+    private func configureViewController() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(tap)
-        }
+    }
 
-    func getImages() {
+    private func getImages() {
         if let moviesID = movies?.id {
             // получаем данные с сервера для нужного фильма
             detailManager.getMovieImages(id: moviesID, completion: { getImagesCaruseleResponce in
@@ -45,7 +60,6 @@ class ImageCaruseleViewController: UIViewController {
                         for i in 0..<images.count {
                             let windowWidth = UIApplication.shared.keyWindow?.bounds.width ?? 0
                             let xOrigin = windowWidth * CGFloat(i)
-                            //  создаем imageView
                             let imageCarousel = UIImageView()
                             imageCarousel.contentMode = .scaleAspectFit
                             imageCarousel.isUserInteractionEnabled = true
@@ -71,15 +85,7 @@ class ImageCaruseleViewController: UIViewController {
         }
     }
 
-    func configureImages() {
-
-    }
-    @objc
-    func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-    isOn.toggle()
-      }
-
-    func updateUI() {
+    private func updateUI() {
         if isOn {
             self.navigationController?.isNavigationBarHidden = true
             self.view.backgroundColor = .black
@@ -88,15 +94,4 @@ class ImageCaruseleViewController: UIViewController {
             self.view.backgroundColor = .white
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

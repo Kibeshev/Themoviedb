@@ -76,6 +76,7 @@
 				B5FE26772281C6D500B378BA /* MoviesViewController.swift */,
 				B579BC7C22A24614009DE95D /* ImageCaruseleViewController.swift */,
 				B539F0062288647600EB4AA0 /* MovieDetailViewController.swift */,
+				B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */,
 			);
 			name = "VIew Controllers";
 			sourceTree = "<group>";
@@ -103,7 +104,6 @@
 			children = (
 				B583F1AB228AC7D70053016E /* VIew Controllers */,
 				B5FE26752281C6D500B378BA /* AppDelegate.swift */,
-				B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */,
 				B5FE26792281C6D500B378BA /* Main.storyboard */,
 				B5FE267C2281C6D900B378BA /* Assets.xcassets */,
 				B5FE267E2281C6D900B378BA /* LaunchScreen.storyboard */,
