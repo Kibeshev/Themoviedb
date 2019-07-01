@@ -65,7 +65,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBAction private func showImagesButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(
-            withIdentifier: "imageCarusele") as? ImageCaruseleViewController else {
+            withIdentifier: "imageCarusele") as? ImagesCarouselViewController else {
             return
         }
         self.navigationController?.pushViewController(controller, animated: true)
@@ -116,14 +116,17 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         https://api.themoviedb.org/3/movie/\(id)?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response=videos
         """
 
-        detailManager.detailGetMovie(urlString: url, completion: { detailMovieResponce in
-            DispatchQueue.main.async {
-                self.originalLanguageLabel.text = detailMovieResponce?.original_language
-                self.fillBudget(budget: detailMovieResponce?.budget)
-                self.fillRevenue(revenue: detailMovieResponce?.revenue)
-                self.fillRunrime(runtime: detailMovieResponce?.runtime)
-                self.detailMovie = detailMovieResponce
-            }
+        detailManager.detailGetMovie(urlString: url, completion: { [weak self] detailMovieResponce in
+                guard let self = self else {
+                return
+                }
+                    DispatchQueue.main.async {
+                        self.originalLanguageLabel.text = detailMovieResponce?.original_language
+                        self.fillBudget(budget: detailMovieResponce?.budget)
+                        self.fillRevenue(revenue: detailMovieResponce?.revenue)
+                        self.fillRunrime(runtime: detailMovieResponce?.runtime)
+                        self.detailMovie = detailMovieResponce
+                    }
         })
     }
 

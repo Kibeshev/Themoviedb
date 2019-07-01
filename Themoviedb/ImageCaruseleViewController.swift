@@ -9,7 +9,7 @@
 import UIKit
 import Nuke
 
-class ImageCaruseleViewController: UIViewController {
+class ImagesCarouselViewController: UIViewController {
 
     // MARK: - Subviews
 

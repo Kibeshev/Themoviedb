@@ -36,5 +36,4 @@ class CellMovies: UITableViewCell {
             }
         }
     }
-
 }

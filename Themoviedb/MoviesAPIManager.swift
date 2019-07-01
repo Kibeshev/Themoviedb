@@ -9,50 +9,6 @@
 import Foundation
 import UIKit
 
- struct GetPopularMoviesResponse: Codable {
-    let page: Int?
-    let total_results: Int?
-    let total_pages: Int?
-    let results: [Movie]?
-    let session_id: String?
-}
- struct Movie: Codable {
-    let vote_count: Int?
-    let id: Int?
-    let video: Bool
-    let vote_average: Double?
-    let title: String?
-    let popularity: Double?
-    let poster_path: String?
-    let original_language: String?
-    let original_title: String?
-    let overview: String?
-    let detailMovieResponce: DetailMovieResponse?
-
-}
-struct DetailMovieResponse: Codable {
-    let original_language: String?
-    let budget: Int?
-    let revenue: Int?
-    let videos: VideosResponse?
-    let image: [Posters]?
-    let runtime: Int?
-
-}
-struct GetMovieImagesResponse: Codable {
-    let posters: [Posters]
-}
-struct Posters: Codable {
-    let file_path: String?
-    let aspect_ratio: Double?
-}
-struct VideosResponse: Codable {
-    let results: [Video]
-}
-struct Video: Codable {
-    let key: String?
-}
-
 class MoviesAPIManager {
 
     func getMovieImages(id: Int, completion: @escaping (GetMovieImagesResponse?) -> Void) {
@@ -118,5 +74,4 @@ class MoviesAPIManager {
         }
         task.resume()
     }
-
 }
