@@ -120,13 +120,13 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
                 guard let self = self else {
                 return
                 }
-                    DispatchQueue.main.async {
-                        self.originalLanguageLabel.text = detailMovieResponce?.original_language
-                        self.fillBudget(budget: detailMovieResponce?.budget)
-                        self.fillRevenue(revenue: detailMovieResponce?.revenue)
-                        self.fillRunrime(runtime: detailMovieResponce?.runtime)
-                        self.detailMovie = detailMovieResponce
-                    }
+                DispatchQueue.main.async {
+                    self.originalLanguageLabel.text = detailMovieResponce?.original_language
+                    self.fillBudget(budget: detailMovieResponce?.budget)
+                    self.fillRevenue(revenue: detailMovieResponce?.revenue)
+                    self.fillRunrime(runtime: detailMovieResponce?.runtime)
+                    self.detailMovie = detailMovieResponce
+                }
         })
     }
 

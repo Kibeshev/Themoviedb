@@ -52,7 +52,10 @@ class ImagesCarouselViewController: UIViewController {
     private func getImages() {
         if let moviesID = movies?.id {
             // получаем данные с сервера для нужного фильма
-            detailManager.getMovieImages(id: moviesID, completion: { getImagesCaruseleResponce in
+            detailManager.getMovieImages(id: moviesID, completion: { [weak self] getImagesCaruseleResponce in
+                guard let self = self else {
+                    return
+                }
                 DispatchQueue.main.async {
                     //получаем массив постерс
                     if let images = getImagesCaruseleResponce?.posters {

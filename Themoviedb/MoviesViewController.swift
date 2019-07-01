@@ -44,7 +44,10 @@ class MoviesViewController: UIViewController {
     }
 
     private func loadData() {
-        manager.getMovie(urlString: urlString, completion: { getPopularMoviesResponse in
+        manager.getMovie(urlString: urlString, completion: { [weak self] getPopularMoviesResponse in
+            guard let self = self else {
+                return
+            }
             DispatchQueue.main.async {
                 self.movies = getPopularMoviesResponse?.results ?? []
                 if let responsePage = getPopularMoviesResponse?.page {
@@ -61,7 +64,10 @@ class MoviesViewController: UIViewController {
         let urlString = """
         https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e&page=\(pageNext)
         """
-        manager.getMovie(urlString: urlString) { (getPopularMoviesResponse) in
+        manager.getMovie(urlString: urlString) { [weak self] (getPopularMoviesResponse) in
+            guard let self = self else {
+                return
+            }
             DispatchQueue.main.async {
                 self.movies.append(contentsOf: getPopularMoviesResponse?.results ?? [] )
                 if let responsePage = getPopularMoviesResponse?.page {
