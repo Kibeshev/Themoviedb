@@ -28,6 +28,10 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         loadData()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        title = "Poster"
     }
 
     // MARK: - Private methods
@@ -38,9 +42,6 @@ class MoviesViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        title = "Popular"
     }
 
     private func loadData() {

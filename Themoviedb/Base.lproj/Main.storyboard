@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3pw-Bl-4Gz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X3o-dH-PnY">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movies View Controller-->
+        <!--Poster-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MoviesViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesListID" id="BYZ-38-t0r" customClass="MoviesViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="465" width="414" height="20"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vpe-t4-EdH">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestCell" rowHeight="366" id="Lcz-Bb-e99" customClass="CellMovies" customModule="Themoviedb" customModuleProvider="target">
@@ -100,15 +100,84 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bWh-NH-XTc"/>
+                    <navigationItem key="navigationItem" title="Poster" id="bWh-NH-XTc"/>
                     <connections>
                         <outlet property="actitviti" destination="woR-pW-gGt" id="cNl-vP-gbV"/>
                         <outlet property="tableView" destination="vpe-t4-EdH" id="1ue-5b-Unq"/>
+                        <segue destination="uOh-oK-SIj" kind="custom" id="Abe-9Q-phO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-620" y="761.46926536731644"/>
+            <point key="canvasLocation" x="1200" y="761.38392857142856"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="fH9-BF-J2w">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jxG-M6-d0o" customClass="PageViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="sQw-h8-0HV"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHw-Sc-O7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="501" y="694"/>
+        </scene>
+        <!--Popular-->
+        <scene sceneID="Pbs-69-EUF">
+            <objects>
+                <viewController id="Cym-J6-0rK" customClass="SegmentViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oli-Ta-ghj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0kE-78-rqf">
+                                <rect key="frame" x="130.5" y="156" width="153" height="29"/>
+                                <segments>
+                                    <segment title="Popular"/>
+                                    <segment title="Upcoming"/>
+                                </segments>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udf-Zo-HZQ">
+                                <rect key="frame" x="0.0" y="200" width="414" height="662"/>
+                                <connections>
+                                    <segue destination="jxG-M6-d0o" kind="embed" id="IuD-JY-7wM"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="top" secondItem="0kE-78-rqf" secondAttribute="bottom" constant="16" id="0ja-Wb-3Di"/>
+                            <constraint firstItem="0kE-78-rqf" firstAttribute="top" secondItem="SlX-fo-fji" secondAttribute="top" constant="16" id="HFy-uS-UHE"/>
+                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="leading" secondItem="SlX-fo-fji" secondAttribute="leading" id="QXj-1C-FbF"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="udf-Zo-HZQ" secondAttribute="bottom" id="TQJ-51-fij"/>
+                            <constraint firstItem="SlX-fo-fji" firstAttribute="trailing" secondItem="udf-Zo-HZQ" secondAttribute="trailing" id="YTL-mn-v1f"/>
+                            <constraint firstItem="0kE-78-rqf" firstAttribute="centerX" secondItem="Oli-Ta-ghj" secondAttribute="centerX" id="q1Y-JD-vKF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SlX-fo-fji"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Popular" id="CP5-gf-jtU"/>
+                    <connections>
+                        <outlet property="containerPageView" destination="udf-Zo-HZQ" id="BEF-Jj-qsx"/>
+                        <outlet property="sControl" destination="0kE-78-rqf" id="PyW-ZD-O9Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="95s-if-HLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1492.753623188406" y="7.3660714285714279"/>
+        </scene>
+        <!--Red Test View Controller-->
+        <scene sceneID="XKZ-gb-EVa">
+            <objects>
+                <viewController storyboardIdentifier="RedVCTestID" id="afz-zl-sak" customClass="RedTestViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fng-Zt-nf9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="qRM-Kx-C9a"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDD-hq-oed" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397.1014492753625" y="42.857142857142854"/>
         </scene>
         <!--Open Movies Image View Controller-->
         <scene sceneID="oh9-5a-0dV">
@@ -335,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SP4-50-BzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302.89855072463769" y="761.38392857142856"/>
+            <point key="canvasLocation" x="2123.1884057971015" y="761.38392857142856"/>
         </scene>
         <!--Images Carousel View Controller-->
         <scene sceneID="mam-vY-Rq7">
@@ -364,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DbT-di-DWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332" y="773"/>
+            <point key="canvasLocation" x="3152.1739130434785" y="772.76785714285711"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="sFU-Bd-v9E">
@@ -399,22 +468,22 @@
             <point key="canvasLocation" x="303" y="1484"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="jlz-No-Fix">
+        <scene sceneID="7Nj-rW-HY4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3pw-Bl-4Gz" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X3o-dH-PnY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8kJ-yr-1uu">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="QMV-YS-GCW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="UFe-In-Zd8"/>
+                        <segue destination="Cym-J6-0rK" kind="relationship" relationship="rootViewController" id="xD2-vK-I83"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="soS-Sq-XaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VqM-wQ-tzC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1849" y="761"/>
+            <point key="canvasLocation" x="582.60869565217399" y="7.3660714285714279"/>
         </scene>
     </scenes>
     <resources>
