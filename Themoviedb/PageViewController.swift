@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PageViewController: UIPageViewController, UIPageViewControllerDelegate {
+class MoviesPageViewController: UIPageViewController, UIPageViewControllerDelegate {
 
     // MARK: - Properties
 
-    weak var segmentViewController: SegmentViewController?
-    lazy var viewControllerList = arrayVC()
+    weak var segmentViewController: MoviesSegmentViewController?
+    lazy private var viewControllerList = arrayVC()
     private var currentPage = 0
 
     // MARK: - UIViewController
@@ -55,9 +55,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate {
                 withIdentifier: "MoviesListID")) as? MoviesViewController else {
                     return []
         }
-        vc1.urlStr = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
-        vc2.urlStr = "https://api.themoviedb.org/3/movie/upcoming?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
-        vc3.urlStr = "https://api.themoviedb.org/3/movie/now_playing?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
+        vc1.urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
+        vc2.urlString = "https://api.themoviedb.org/3/movie/upcoming?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
+        vc3.urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
         return [vc1, vc2, vc3]
     }
 

@@ -111,20 +111,20 @@
             </objects>
             <point key="canvasLocation" x="1214" y="1583"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Movies Page View Controller-->
         <scene sceneID="fH9-BF-J2w">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jxG-M6-d0o" customClass="PageViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jxG-M6-d0o" customClass="MoviesPageViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="sQw-h8-0HV"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHw-Sc-O7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="581" y="1488"/>
         </scene>
-        <!--Popular-->
+        <!--Feed-->
         <scene sceneID="Pbs-69-EUF">
             <objects>
-                <viewController id="Cym-J6-0rK" customClass="SegmentViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cym-J6-0rK" customClass="MoviesSegmentViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oli-Ta-ghj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,7 +156,7 @@
                         <viewLayoutGuide key="safeArea" id="SlX-fo-fji"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" image="feed" id="S08-Rd-3fE"/>
-                    <navigationItem key="navigationItem" title="Popular" id="CP5-gf-jtU"/>
+                    <navigationItem key="navigationItem" id="CP5-gf-jtU"/>
                     <connections>
                         <outlet property="containerPageView" destination="udf-Zo-HZQ" id="BEF-Jj-qsx"/>
                         <outlet property="sControl" destination="0kE-78-rqf" id="PyW-ZD-O9Z"/>
