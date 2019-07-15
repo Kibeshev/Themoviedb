@@ -14,5 +14,4 @@ class RedTestViewController: UIViewController {
         super.viewDidLoad()
 
     }
-
 }

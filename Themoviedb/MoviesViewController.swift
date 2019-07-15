@@ -17,10 +17,11 @@ class MoviesViewController: UIViewController {
 
     // MARK: - Properties
 
+    var segmentVC: SegmentViewController?
     private let manager = MoviesAPIManager()
     private var movies: [Movie] = []
     private var pageNext: String = ""
-    private let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
+    var urlStr = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e&page=1"
 
     // MARK: - UIViewController
 
@@ -45,7 +46,7 @@ class MoviesViewController: UIViewController {
     }
 
     private func loadData() {
-        manager.getMovie(urlString: urlString, completion: { [weak self] getPopularMoviesResponse in
+        manager.getMovie(urlString: urlStr, completion: { [weak self] getPopularMoviesResponse in
             guard let self = self else {
                 return
             }
@@ -62,10 +63,7 @@ class MoviesViewController: UIViewController {
     }
 
     private func loadMoreMovies() {
-        let urlString = """
-        https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e&page=\(pageNext)
-        """
-        manager.getMovie(urlString: urlString) { [weak self] (getPopularMoviesResponse) in
+        manager.getMovie(urlString: "\(urlStr)&page=\(pageNext)") { [weak self] (getPopularMoviesResponse) in
             guard let self = self else {
                 return
             }

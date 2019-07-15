@@ -10,15 +10,20 @@ import UIKit
 
 class SegmentViewController: UIViewController {
 
+    // MARK: - Subviews
+
     @IBOutlet private weak var containerPageView: UIView!
     @IBOutlet private weak var sControl: UISegmentedControl!
 
+    // MARK: - Properties
+
     var pageViewController: PageViewController?
+
+    // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sControl.addTarget(self, action: #selector(segmentTapped), for: .valueChanged)        
-        // Do any additional setup after loading the view.
+        self.sControl.addTarget(self, action: #selector(segmentTapped), for: .valueChanged)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -28,29 +33,19 @@ class SegmentViewController: UIViewController {
         }
     }
 
+    // MARK: - Internal
+
+    func setIndex(index: Int) {
+        sControl.selectedSegmentIndex = index
+    }
+
+    // MARK: - Actions
+
     @objc
     func segmentTapped(target: UISegmentedControl) {
         if target == self.sControl {
             let segmentIndex = target.selectedSegmentIndex
             pageViewController?.setPage(index: segmentIndex)
-            
         }
     }
-
-    func setIndex(index: Int) {        
-        sControl.selectedSegmentIndex = index
-    }
-
 }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
