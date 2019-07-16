@@ -1,5 +1,5 @@
 //
-//  NowPlayingViewController.swift
+//  SearchMoviesViewController.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 07/07/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NowPlayingViewController: UIViewController {
+class SearchMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

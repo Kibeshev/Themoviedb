@@ -15,10 +15,10 @@
 		B55CAB5222CA8C3D00B5856E /* GetMovieImagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB5122CA8C3D00B5856E /* GetMovieImagesResponse.swift */; };
 		B55CAB5422CA8C6600B5856E /* VideosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB5322CA8C6600B5856E /* VideosResponse.swift */; };
 		B55CAB5622CA8C8400B5856E /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB5522CA8C8400B5856E /* Video.swift */; };
-		B55CAB5F22CD22E500B5856E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB5E22CD22E500B5856E /* PageViewController.swift */; };
-		B55CAB6122CD25CF00B5856E /* RedTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB6022CD25CF00B5856E /* RedTestViewController.swift */; };
-		B55CAB8522D1D6F100B5856E /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB8422D1D6F100B5856E /* SegmentViewController.swift */; };
-		B55CAB8722D2854900B5856E /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB8622D2854900B5856E /* NowPlayingViewController.swift */; };
+		B55CAB5F22CD22E500B5856E /* MoviesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB5E22CD22E500B5856E /* MoviesPageViewController.swift */; };
+		B55CAB6122CD25CF00B5856E /* FavoritesMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB6022CD25CF00B5856E /* FavoritesMoviesViewController.swift */; };
+		B55CAB8522D1D6F100B5856E /* MoviesSegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB8422D1D6F100B5856E /* MoviesSegmentViewController.swift */; };
+		B55CAB8722D2854900B5856E /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB8622D2854900B5856E /* SearchMoviesViewController.swift */; };
 		B579BC7B229FE31C009DE95D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579BC7A229FE31C009DE95D /* WebViewController.swift */; };
 		B579BC7D22A24614009DE95D /* ImagesCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579BC7C22A24614009DE95D /* ImagesCarouselViewController.swift */; };
 		B583F1A8228AB89B0053016E /* OpenMoviesImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */; };
@@ -43,10 +43,10 @@
 		B55CAB5122CA8C3D00B5856E /* GetMovieImagesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMovieImagesResponse.swift; sourceTree = "<group>"; };
 		B55CAB5322CA8C6600B5856E /* VideosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosResponse.swift; sourceTree = "<group>"; };
 		B55CAB5522CA8C8400B5856E /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		B55CAB5E22CD22E500B5856E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		B55CAB6022CD25CF00B5856E /* RedTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedTestViewController.swift; sourceTree = "<group>"; };
-		B55CAB8422D1D6F100B5856E /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
-		B55CAB8622D2854900B5856E /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
+		B55CAB5E22CD22E500B5856E /* MoviesPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPageViewController.swift; sourceTree = "<group>"; };
+		B55CAB6022CD25CF00B5856E /* FavoritesMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMoviesViewController.swift; sourceTree = "<group>"; };
+		B55CAB8422D1D6F100B5856E /* MoviesSegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSegmentViewController.swift; sourceTree = "<group>"; };
+		B55CAB8622D2854900B5856E /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		B579BC7A229FE31C009DE95D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B579BC7C22A24614009DE95D /* ImagesCarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCarouselViewController.swift; sourceTree = "<group>"; };
 		B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMoviesImageViewController.swift; sourceTree = "<group>"; };
@@ -121,10 +121,10 @@
 				B579BC7C22A24614009DE95D /* ImagesCarouselViewController.swift */,
 				B539F0062288647600EB4AA0 /* MovieDetailViewController.swift */,
 				B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */,
-				B55CAB5E22CD22E500B5856E /* PageViewController.swift */,
-				B55CAB8422D1D6F100B5856E /* SegmentViewController.swift */,
-				B55CAB6022CD25CF00B5856E /* RedTestViewController.swift */,
-				B55CAB8622D2854900B5856E /* NowPlayingViewController.swift */,
+				B55CAB5E22CD22E500B5856E /* MoviesPageViewController.swift */,
+				B55CAB8422D1D6F100B5856E /* MoviesSegmentViewController.swift */,
+				B55CAB6022CD25CF00B5856E /* FavoritesMoviesViewController.swift */,
+				B55CAB8622D2854900B5856E /* SearchMoviesViewController.swift */,
 			);
 			name = "View Controllers ";
 			sourceTree = "<group>";
@@ -312,15 +312,15 @@
 				B539F0072288647600EB4AA0 /* MovieDetailViewController.swift in Sources */,
 				B55CAB4E22CA8B3D00B5856E /* DetailMovieResponse.swift in Sources */,
 				B55CAB5022CA8B8D00B5856E /* Posters.swift in Sources */,
-				B55CAB8522D1D6F100B5856E /* SegmentViewController.swift in Sources */,
+				B55CAB8522D1D6F100B5856E /* MoviesSegmentViewController.swift in Sources */,
 				B55CAB5222CA8C3D00B5856E /* GetMovieImagesResponse.swift in Sources */,
 				B579BC7D22A24614009DE95D /* ImagesCarouselViewController.swift in Sources */,
-				B55CAB8722D2854900B5856E /* NowPlayingViewController.swift in Sources */,
-				B55CAB6122CD25CF00B5856E /* RedTestViewController.swift in Sources */,
+				B55CAB8722D2854900B5856E /* SearchMoviesViewController.swift in Sources */,
+				B55CAB6122CD25CF00B5856E /* FavoritesMoviesViewController.swift in Sources */,
 				B55CAB4A22CA8A6900B5856E /* GetPopularMoviesResponce.swift in Sources */,
 				B55CAB4C22CA8B1E00B5856E /* Movie.swift in Sources */,
 				B5FE26762281C6D500B378BA /* AppDelegate.swift in Sources */,
-				B55CAB5F22CD22E500B5856E /* PageViewController.swift in Sources */,
+				B55CAB5F22CD22E500B5856E /* MoviesPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

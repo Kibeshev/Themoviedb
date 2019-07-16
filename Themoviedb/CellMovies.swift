@@ -22,7 +22,7 @@ class CellMovies: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
     // MARK: - Methods

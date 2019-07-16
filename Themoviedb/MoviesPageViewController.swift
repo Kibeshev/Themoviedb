@@ -1,5 +1,5 @@
 //
-//  PageViewController.swift
+//  MoviesPageViewController.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 03/07/2019.
@@ -12,7 +12,6 @@ class MoviesPageViewController: UIPageViewController, UIPageViewControllerDelega
 
     // MARK: - Properties
 
-    weak var segmentViewController: MoviesSegmentViewController?
     lazy private var viewControllerList = arrayVC()
     private var currentPage = 0
 

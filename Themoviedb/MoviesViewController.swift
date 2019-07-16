@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MoviesViewController.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 07/05/2019.

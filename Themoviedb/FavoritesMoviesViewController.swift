@@ -1,5 +1,5 @@
 //
-//  RedTestViewController.swift
+//  FavoritesMoviesViewController.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 03/07/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RedTestViewController: UIViewController {
+class FavoritesMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

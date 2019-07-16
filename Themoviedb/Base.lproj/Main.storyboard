@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestCell" rowHeight="366" id="Lcz-Bb-e99" customClass="CellMovies" customModule="Themoviedb" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestCell" rowHeight="366" id="Lcz-Bb-e99" customClass="CellMovies" customModule="Themoviedb" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="366"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lcz-Bb-e99" id="K3T-oz-h0B">
@@ -159,7 +159,7 @@
                     <navigationItem key="navigationItem" id="CP5-gf-jtU"/>
                     <connections>
                         <outlet property="containerPageView" destination="udf-Zo-HZQ" id="BEF-Jj-qsx"/>
-                        <outlet property="sControl" destination="0kE-78-rqf" id="PyW-ZD-O9Z"/>
+                        <outlet property="segmentedControl" destination="0kE-78-rqf" id="o7R-dn-afJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95s-if-HLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,7 +169,7 @@
         <!--Favorites-->
         <scene sceneID="XKZ-gb-EVa">
             <objects>
-                <viewController storyboardIdentifier="RedVCTestID" id="afz-zl-sak" customClass="RedTestViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RedVCTestID" id="afz-zl-sak" customClass="FavoritesMoviesViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fng-Zt-nf9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +185,7 @@
         <!--Seaarch-->
         <scene sceneID="2TZ-Fs-2Cb">
             <objects>
-                <viewController id="f7k-5J-cGb" customClass="NowPlayingViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="f7k-5J-cGb" customClass="SearchMoviesViewController" customModule="Themoviedb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ROQ-98-cJU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -511,6 +511,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Movies" id="x6f-2l-eqZ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cVk-le-DAe">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

@@ -1,5 +1,5 @@
 //
-//  SegmentViewController.swift
+//  MoviesSegmentViewController.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 07/07/2019.
@@ -29,7 +29,6 @@ class MoviesSegmentViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? MoviesPageViewController {
             self.pageViewController = vc
-            vc.segmentViewController = self
         }
     }
 
