@@ -52,9 +52,6 @@ class OpenMoviesImageViewController: UIViewController {
     }
 
     private func configureViewController() {
-        // убрал larde title
-        navigationItem.largeTitleDisplayMode = .never
-        title = "Poster"
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(
             imageTapped(tapGestureRecognizer:)
             ))

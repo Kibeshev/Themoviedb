@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MoviesViewController.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 07/05/2019.
@@ -20,7 +20,7 @@ class MoviesViewController: UIViewController {
     private let manager = MoviesAPIManager()
     private var movies: [Movie] = []
     private var pageNext: String = ""
-    private let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e"
+    var urlString = ""
 
     // MARK: - UIViewController
 
@@ -28,6 +28,10 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         loadData()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        title = "Poster"
     }
 
     // MARK: - Private methods
@@ -38,9 +42,6 @@ class MoviesViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        title = "Popular"
     }
 
     private func loadData() {
@@ -61,10 +62,7 @@ class MoviesViewController: UIViewController {
     }
 
     private func loadMoreMovies() {
-        let urlString = """
-        https://api.themoviedb.org/3/movie/popular?api_key=4cb1eeab94f45affe2536f2c684a5c9e&page=\(pageNext)
-        """
-        manager.getMovie(urlString: urlString) { [weak self] (getPopularMoviesResponse) in
+        manager.getMovie(urlString: "\(urlString)&page=\(pageNext)") { [weak self] (getPopularMoviesResponse) in
             guard let self = self else {
                 return
             }
