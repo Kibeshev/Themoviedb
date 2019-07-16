@@ -15,6 +15,10 @@ class SearchMoviesViewController: UIViewController {
     var searchArray: [Movie] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+    }
+
+    func configureViewController() {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
@@ -22,6 +26,11 @@ class SearchMoviesViewController: UIViewController {
         navigationItem.searchController = searchViewController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.dimsBackgroundDuringPresentation = false
+        self.definesPresentationContext = true
+        searchViewController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchViewController.searchBar.delegate = self as? UISearchBarDelegate
+        searchViewController.dimsBackgroundDuringPresentation = false
+        searchViewController.definesPresentationContext = true
     }
 }
 
