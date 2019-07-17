@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50835E522DDCF7000189B45 /* SearchMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50835E422DDCF7000189B45 /* SearchMoviesTableViewCell.swift */; };
 		B539F0072288647600EB4AA0 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539F0062288647600EB4AA0 /* MovieDetailViewController.swift */; };
 		B55CAB4A22CA8A6900B5856E /* GetPopularMoviesResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB4922CA8A6900B5856E /* GetPopularMoviesResponce.swift */; };
 		B55CAB4C22CA8B1E00B5856E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB4B22CA8B1E00B5856E /* Movie.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		83813CB2B290E40D082645F8 /* Pods_Themoviedb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Themoviedb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9BA70645CE0F6919AB1694 /* Pods-Themoviedb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Themoviedb.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Themoviedb/Pods-Themoviedb.debug.xcconfig"; sourceTree = "<group>"; };
+		B50835E422DDCF7000189B45 /* SearchMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		B539F0062288647600EB4AA0 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		B55CAB4922CA8A6900B5856E /* GetPopularMoviesResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopularMoviesResponce.swift; sourceTree = "<group>"; };
 		B55CAB4B22CA8B1E00B5856E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				B5BD962222831CFC004CFEC8 /* CellMovies.swift */,
+				B50835E422DDCF7000189B45 /* SearchMoviesTableViewCell.swift */,
 			);
 			name = Subviews;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				B5FE26882281C7D700B378BA /* MoviesAPIManager.swift in Sources */,
 				B55CAB5622CA8C8400B5856E /* Video.swift in Sources */,
 				B5BD962322831CFC004CFEC8 /* CellMovies.swift in Sources */,
+				B50835E522DDCF7000189B45 /* SearchMoviesTableViewCell.swift in Sources */,
 				B579BC7B229FE31C009DE95D /* WebViewController.swift in Sources */,
 				B539F0072288647600EB4AA0 /* MovieDetailViewController.swift in Sources */,
 				B55CAB4E22CA8B3D00B5856E /* DetailMovieResponse.swift in Sources */,
