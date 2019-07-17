@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95s-if-HLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2163.768115942029" y="867.85714285714278"/>
+            <point key="canvasLocation" x="1974" y="868"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="XKZ-gb-EVa">
@@ -193,7 +193,7 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestCellSearch" rowHeight="211" id="18h-5m-iK2" customClass="SearchMoviesTableViewCell" customModule="Themoviedb" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestCell" rowHeight="211" id="18h-5m-iK2" customClass="CellMovies" customModule="Themoviedb" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="211"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="TestCellSearch" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="18h-5m-iK2" id="MBy-rX-LuW">
@@ -508,7 +508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSf-GA-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1845" y="2244"/>
+            <point key="canvasLocation" x="2123" y="2236"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2OW-Cz-Lx7">
@@ -567,7 +567,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8hf-hY-y65" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018.840579710145" y="867.85714285714278"/>
+            <point key="canvasLocation" x="2935" y="868"/>
         </scene>
         <!--Feed-->
         <scene sceneID="rAJ-Nx-F69">

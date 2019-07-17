@@ -10,29 +10,43 @@ import UIKit
 
 class SearchMoviesViewController: UIViewController {
 
-    var moviesViewController: MoviesViewController?
+    // MARK: - Subviews
+
     @IBOutlet private weak var tableView: UITableView?
-    var searchArray: [Movie] = []
+
+    // MARK: - Properties
+
+    private var searchArray: [Movie] = []
+    private var searchString = ""
+
+    // MARK: - UIViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
     }
 
-    func configureViewController() {
+    // MARK: - Private methods
+
+    private func configureViewController() {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
-        let searchViewController = UISearchController(searchResultsController: moviesViewController)
+        let searchViewController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchViewController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
+        searchViewController.searchBar.placeholder = " Enter a movie name"
         searchViewController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchViewController.searchBar.delegate = self as? UISearchBarDelegate
-        searchViewController.dimsBackgroundDuringPresentation = false
         searchViewController.definesPresentationContext = true
+        searchString = searchViewController.searchBar.text ?? ""
     }
+
 }
+
+// MARK: - UITableViewDelegate
 
 extension SearchMoviesViewController: UITableViewDelegate {
 
@@ -41,12 +55,16 @@ extension SearchMoviesViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension SearchMoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "TestCellSearch", for: indexPath
-            ) as? SearchMoviesTableViewCell
+            withIdentifier: "TestCell", for: indexPath
+            ) as? CellMovies
+        let movie = self.searchArray[indexPath.row]
+        cell?.configure(movie: movie)
         return cell ?? UITableViewCell()
 
     }
