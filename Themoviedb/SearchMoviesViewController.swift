@@ -16,8 +16,9 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Properties
 
-    private var searchArray: [Movie] = []
-    private var searchString = ""
+    fileprivate var manager = MoviesAPIManager()
+    fileprivate var searchArray: [Movie] = []
+    fileprivate var searchString = ""
 
     // MARK: - UIViewController
 
@@ -32,6 +33,7 @@ class SearchMoviesViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
+
         let searchViewController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchViewController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -41,9 +43,7 @@ class SearchMoviesViewController: UIViewController {
         searchViewController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchViewController.searchBar.delegate = self as? UISearchBarDelegate
         searchViewController.definesPresentationContext = true
-        searchString = searchViewController.searchBar.text ?? ""
     }
-
 }
 
 // MARK: - UITableViewDelegate
@@ -68,4 +68,9 @@ extension SearchMoviesViewController: UITableViewDataSource {
         return cell ?? UITableViewCell()
 
     }
+}
+
+extension SearchMoviesViewController: UISearchBarDelegate {
+
+
 }
