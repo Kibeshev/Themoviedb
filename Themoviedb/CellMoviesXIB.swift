@@ -22,7 +22,7 @@ class CellMoviesXIB: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
     // MARK: - Methods
@@ -35,11 +35,5 @@ class CellMoviesXIB: UITableViewCell {
                 Nuke.loadImage(with: imageURL, into: imageMovies)
             }
         }
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class FavoritesMoviesViewController: UIViewController {
 
     // in FavoritesMoviesViewController will use data base
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

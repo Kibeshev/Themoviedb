@@ -16,9 +16,9 @@ class SearchMoviesViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate var manager = MoviesAPIManager()
-    fileprivate var searchArray: [Movie] = []
-    fileprivate var searchString = ""
+    private var manager = MoviesAPIManager()
+    private var searchMovies: [Movie] = []
+    private var searchString = ""
 
     // MARK: - UIViewController
 
@@ -30,6 +30,7 @@ class SearchMoviesViewController: UIViewController {
     // MARK: - Private methods
 
     private func configureViewController() {
+
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
@@ -42,7 +43,7 @@ class SearchMoviesViewController: UIViewController {
         self.definesPresentationContext = true
         searchViewController.searchBar.placeholder = " Enter a movie name"
         searchViewController.searchResultsUpdater = self as? UISearchResultsUpdating
-        searchViewController.searchBar.delegate = self as? UISearchBarDelegate
+        searchViewController.searchBar.delegate = self
         searchViewController.definesPresentationContext = true
     }
 }
@@ -52,7 +53,7 @@ class SearchMoviesViewController: UIViewController {
 extension SearchMoviesViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchArray.count
+        return searchMovies.count
     }
 }
 
@@ -62,30 +63,46 @@ extension SearchMoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "Cell", for: indexPath
+            withIdentifier: "cell", for: indexPath
             ) as? CellMoviesXIB
-        let movie = self.searchArray[indexPath.row]
+        let movie = self.searchMovies[indexPath.row]
         cell?.configure(movie: movie)
         return cell ?? UITableViewCell()
 
     }
 }
 
+// MARK: - UISearchBarDelegate
+
 extension SearchMoviesViewController: UISearchBarDelegate {
 
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        let searchAPI = """
-//        https://api.themoviedb.org/3/search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=\(searchText)
-//        """
-//        manager.getMovie(urlString: searchAPI, completion: { [weak self] getPopularMoviesResponse in
-//            guard let self = self else {
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                self.searchArray = getPopularMoviesResponse?.results ?? []
-//                self.tableView?.reloadData()
-//            }
-//        })
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        let searchAPI = """
+        https://api.themoviedb.org/3/search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=\(searchText)
+        """
+        manager.getMovie(urlString: searchAPI, completion: { [weak self] getPopularMoviesResponse in
+            guard let self = self else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.searchMovies = getPopularMoviesResponse?.results ?? []
+                self.tableView?.reloadData()
+            }
+        })
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard
+            let controller = storyboard.instantiateViewController(
+                withIdentifier: "DetailViewController"
+                ) as? MovieDetailViewController
+            else {
+                return
+        }
+        self.navigationController?.pushViewController(controller, animated: true)
+        controller.movies = self.searchMovies[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

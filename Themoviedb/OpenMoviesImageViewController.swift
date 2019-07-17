@@ -32,6 +32,10 @@ class OpenMoviesImageViewController: UIViewController {
         getImage()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = true
+    }
+
     // MARK: - Actions
 
     @objc
@@ -52,6 +56,7 @@ class OpenMoviesImageViewController: UIViewController {
     }
 
     private func configureViewController() {
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(
             imageTapped(tapGestureRecognizer:)
             ))
