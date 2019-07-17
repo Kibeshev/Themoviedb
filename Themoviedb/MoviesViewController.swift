@@ -42,6 +42,7 @@ class MoviesViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "CellMoviesXIB", bundle: Bundle.main), forCellReuseIdentifier: "cell")
     }
 
     private func loadData() {
@@ -82,7 +83,7 @@ class MoviesViewController: UIViewController {
 extension MoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? CellMovies
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellMoviesXIB
         let movie = self.movies[indexPath.row]
         cell?.configure(movie: movie)
         return cell ?? UITableViewCell()
