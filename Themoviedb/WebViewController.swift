@@ -28,6 +28,10 @@ class WebViewController: UIViewController {
         loadUrl()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = true
+    }
+
     // MARK: - Private methods
 
     private func configureWebView() {
@@ -44,6 +48,7 @@ class WebViewController: UIViewController {
         webView?.isHidden = true
         webView?.navigationDelegate = self
         activityIndicator.color = .gray
+
     }
 
     private func loadUrl() {

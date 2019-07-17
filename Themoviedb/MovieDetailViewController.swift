@@ -49,6 +49,10 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         loadData()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = false
+    }
+
     // MARK: - Actions
 
     @IBAction private func playVideoButton(_ sender: Any) {
@@ -93,6 +97,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         showImagesButton.layer.borderWidth = 0.5
         showImagesButton.layer.borderColor = UIColor.gray.cgColor
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.tabBarController?.tabBar.isHidden = true
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(imageTapped(tapGestureRecognizer:))

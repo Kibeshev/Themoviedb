@@ -43,6 +43,8 @@ class MoviesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CellMoviesXIB", bundle: Bundle.main), forCellReuseIdentifier: "cell")
+        tableView.layer.borderColor = UIColor.gray.cgColor
+        tableView.layer.borderWidth = 0.3
     }
 
     private func loadData() {
