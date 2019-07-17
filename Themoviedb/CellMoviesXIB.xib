@@ -63,6 +63,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="imageMovies" destination="YMD-W3-Hpw" id="Mhs-ja-8s3"/>
                 <outlet property="labelDescriptions" destination="TcT-3W-NbV" id="yQd-0H-1q2"/>
