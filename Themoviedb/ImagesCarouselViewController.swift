@@ -35,6 +35,10 @@ class ImagesCarouselViewController: UIViewController {
         self.hidesBottomBarWhenPushed = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = true
+    }
+
     // MARK: - Actions
 
     @objc
