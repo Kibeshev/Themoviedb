@@ -55,7 +55,7 @@ class MoviesAPIManager {
         task.resume()
     }
 
-    func getMovie(urlString: String, completion: @escaping (GetPopularMoviesResponse?) -> Void) {
+    func getMovies(urlString: String, completion: @escaping (GetPopularMoviesResponse?) -> Void) {
 
         guard let url = URL(string: urlString) else {
             completion(nil)

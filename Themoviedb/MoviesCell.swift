@@ -1,15 +1,15 @@
 //
-//  CellMovies.swift
+//  MoviesCell.swift
 //  Themoviedb
 //
-//  Created by Кирилл Кибешев on 08/05/2019.
+//  Created by Кирилл Кибешев on 17/07/2019.
 //  Copyright © 2019 Кирилл Кибешев. All rights reserved.
 //
 
 import UIKit
 import Nuke
 
-class CellMovies: UITableViewCell {
+class MoviesCell: UITableViewCell {
 
     // MARK: - Subviews
 

@@ -44,6 +44,7 @@ class WebViewController: UIViewController {
         webView?.isHidden = true
         webView?.navigationDelegate = self
         activityIndicator.color = .gray
+
     }
 
     private func loadUrl() {

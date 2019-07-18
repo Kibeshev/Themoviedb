@@ -52,6 +52,7 @@ class OpenMoviesImageViewController: UIViewController {
     }
 
     private func configureViewController() {
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(
             imageTapped(tapGestureRecognizer:)
             ))

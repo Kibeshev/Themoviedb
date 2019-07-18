@@ -42,10 +42,13 @@ class MoviesViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
+        tableView.layer.borderColor = UIColor.gray.cgColor
+        tableView.layer.borderWidth = 0.3
     }
 
     private func loadData() {
-        manager.getMovie(urlString: urlString, completion: { [weak self] getPopularMoviesResponse in
+        manager.getMovies(urlString: urlString, completion: { [weak self] getPopularMoviesResponse in
             guard let self = self else {
                 return
             }
@@ -62,7 +65,7 @@ class MoviesViewController: UIViewController {
     }
 
     private func loadMoreMovies() {
-        manager.getMovie(urlString: "\(urlString)&page=\(pageNext)") { [weak self] (getPopularMoviesResponse) in
+        manager.getMovies(urlString: "\(urlString)&page=\(pageNext)") { [weak self] (getPopularMoviesResponse) in
             guard let self = self else {
                 return
             }
@@ -82,7 +85,7 @@ class MoviesViewController: UIViewController {
 extension MoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? CellMovies
+        let cell = tableView.dequeueReusableCell(withIdentifier: "moviesCell", for: indexPath) as? MoviesCell
         let movie = self.movies[indexPath.row]
         cell?.configure(movie: movie)
         return cell ?? UITableViewCell()
@@ -102,6 +105,7 @@ extension MoviesViewController: UITableViewDelegate {
         else {
             return
         }
+        controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
         controller.movies = self.movies[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
