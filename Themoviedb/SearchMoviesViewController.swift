@@ -78,7 +78,6 @@ extension SearchMoviesViewController: UITableViewDataSource {
 extension SearchMoviesViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.tableView?.isHidden = false
         let urlSearch = """
         https://api.themoviedb.org/3/search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=\(searchText)
         """
@@ -94,7 +93,8 @@ extension SearchMoviesViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-            self.tableView?.isHidden = true
+        self.searchMovies = []
+        self.tableView?.reloadData()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
