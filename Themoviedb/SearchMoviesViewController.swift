@@ -43,7 +43,6 @@ class SearchMoviesViewController: UIViewController {
         navigationItem.searchController?.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
         searchViewController.searchBar.placeholder = " Enter a movie name"
-        searchViewController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchViewController.searchBar.delegate = self
         searchViewController.definesPresentationContext = true
     }
@@ -106,6 +105,7 @@ extension SearchMoviesViewController: UISearchBarDelegate {
             else {
                 return
         }
+        controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
         controller.movies = self.searchMovies[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
