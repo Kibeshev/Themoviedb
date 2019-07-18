@@ -32,10 +32,6 @@ class OpenMoviesImageViewController: UIViewController {
         getImage()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.tabBarController?.tabBar.isHidden = true
-    }
-
     // MARK: - Actions
 
     @objc
