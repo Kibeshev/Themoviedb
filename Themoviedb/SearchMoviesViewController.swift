@@ -34,7 +34,7 @@ class SearchMoviesViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
-        tableView?.register(UINib(nibName: "CellMoviesXIB", bundle: Bundle.main), forCellReuseIdentifier: "cell")
+        tableView?.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
 
         let searchViewController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchViewController
@@ -63,8 +63,8 @@ extension SearchMoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "cell", for: indexPath
-            ) as? CellMoviesXIB
+            withIdentifier: "moviesCell", for: indexPath
+            ) as? MoviesCell
         let movie = self.searchMovies[indexPath.row]
         cell?.configure(movie: movie)
         return cell ?? UITableViewCell()
@@ -78,10 +78,10 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
-        let searchAPI = """
+        let urlSearch = """
         https://api.themoviedb.org/3/search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=\(searchText)
         """
-        manager.getMovie(urlString: searchAPI, completion: { [weak self] getPopularMoviesResponse in
+        manager.getMovies(urlString: urlSearch, completion: { [weak self] getPopularMoviesResponse in
             guard let self = self else {
                 return
             }

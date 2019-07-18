@@ -1,5 +1,5 @@
 //
-//  CellMoviesXIB.swift
+//  MoviesCell.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 17/07/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import Nuke
 
-class CellMoviesXIB: UITableViewCell {
+class MoviesCell: UITableViewCell {
 
     // MARK: - Subviews
 
