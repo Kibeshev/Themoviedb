@@ -34,6 +34,7 @@ class SearchMoviesViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
+        tableView?.keyboardDismissMode = .onDrag
         tableView?.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
 
         let searchViewController = UISearchController(searchResultsController: nil)
@@ -77,7 +78,7 @@ extension SearchMoviesViewController: UITableViewDataSource {
 extension SearchMoviesViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        self.tableView?.isHidden = false
         let urlSearch = """
         https://api.themoviedb.org/3/search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=\(searchText)
         """
@@ -90,6 +91,10 @@ extension SearchMoviesViewController: UISearchBarDelegate {
                 self.tableView?.reloadData()
             }
         })
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            self.tableView?.isHidden = true
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
