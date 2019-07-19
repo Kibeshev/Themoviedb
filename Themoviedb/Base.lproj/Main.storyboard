@@ -66,29 +66,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0kE-78-rqf">
-                                <rect key="frame" x="72.5" y="156" width="269" height="29"/>
-                                <segments>
-                                    <segment title="Popular"/>
-                                    <segment title="Upcoming"/>
-                                    <segment title="Now Playing"/>
-                                </segments>
-                            </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udf-Zo-HZQ">
-                                <rect key="frame" x="0.0" y="200" width="414" height="613"/>
+                                <rect key="frame" x="0.0" y="184" width="414" height="629"/>
                                 <connections>
                                     <segue destination="jxG-M6-d0o" kind="embed" id="IuD-JY-7wM"/>
                                 </connections>
                             </containerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCm-zO-ZkL">
+                                <rect key="frame" x="0.0" y="140" width="414" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <barButtonItem title="segmentedControl" style="plain" id="LTI-YV-dKR">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="0kE-78-rqf">
+                                            <rect key="frame" x="20" y="7.5" width="374" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Popular"/>
+                                                <segment title="Upcoming"/>
+                                                <segment title="Now Playing"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="top" secondItem="0kE-78-rqf" secondAttribute="bottom" constant="16" id="0ja-Wb-3Di"/>
-                            <constraint firstItem="0kE-78-rqf" firstAttribute="top" secondItem="SlX-fo-fji" secondAttribute="top" constant="16" id="HFy-uS-UHE"/>
+                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="trailing" secondItem="SlX-fo-fji" secondAttribute="trailing" id="J2B-MY-4PU"/>
                             <constraint firstItem="udf-Zo-HZQ" firstAttribute="leading" secondItem="SlX-fo-fji" secondAttribute="leading" id="QXj-1C-FbF"/>
+                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="top" secondItem="fCm-zO-ZkL" secondAttribute="bottom" id="RqV-S4-fXk"/>
                             <constraint firstAttribute="bottomMargin" secondItem="udf-Zo-HZQ" secondAttribute="bottom" id="TQJ-51-fij"/>
                             <constraint firstItem="SlX-fo-fji" firstAttribute="trailing" secondItem="udf-Zo-HZQ" secondAttribute="trailing" id="YTL-mn-v1f"/>
-                            <constraint firstItem="0kE-78-rqf" firstAttribute="centerX" secondItem="Oli-Ta-ghj" secondAttribute="centerX" id="q1Y-JD-vKF"/>
+                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="top" secondItem="SlX-fo-fji" secondAttribute="top" id="oFr-wx-0ol"/>
+                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="leading" secondItem="SlX-fo-fji" secondAttribute="leading" id="y8P-zL-eo0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SlX-fo-fji"/>
                     </view>
@@ -96,6 +106,7 @@
                     <connections>
                         <outlet property="containerPageView" destination="udf-Zo-HZQ" id="BEF-Jj-qsx"/>
                         <outlet property="segmentedControl" destination="0kE-78-rqf" id="o7R-dn-afJ"/>
+                        <outlet property="toolBar" destination="fCm-zO-ZkL" id="0zI-Ns-ZAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95s-if-HLd" userLabel="First Responder" sceneMemberID="firstResponder"/>

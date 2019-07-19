@@ -14,6 +14,7 @@ class MoviesSegmentViewController: UIViewController {
 
     @IBOutlet private weak var containerPageView: UIView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var toolBar: UIToolbar!
 
     // MARK: - Properties
 
@@ -24,6 +25,7 @@ class MoviesSegmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.segmentedControl.addTarget(self, action: #selector(segmentTapped), for: .valueChanged)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
