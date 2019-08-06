@@ -79,4 +79,27 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
         cell?.configure(movie: movieRealm)
         return cell ?? UITableViewCell()
     }
+
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath
+        ) {
+            do {
+            let realm = try Realm()
+            let myPuppy = realm.objects(RewriteMovie.self)
+            for i in myPuppy {
+                print("стер из базы по свайпу делит")
+                if i.id == favoriteMovies[indexPath.row].id {
+                    try realm.write {
+                        realm.delete(i)
+                    }
+                }
+            }
+            } catch {
+                print("\(error)")
+            }
+        if editingStyle == .delete {
+            favoriteMovies.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+        }
+    }
 }
