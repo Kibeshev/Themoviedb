@@ -9,16 +9,18 @@
 import UIKit
 import Nuke
 import Foundation
+import RealmSwift
 
 class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Subviews
+    let favoritesVC = FavoritesMoviesViewController()
 
     @IBOutlet private weak var stackViewRuntime: UIStackView!
     @IBOutlet private weak var stackViewBudget: UIStackView!
     @IBOutlet private weak var stackViewRevenue: UIStackView!
     @IBOutlet private weak var revenueLabelTitle: UILabel!
-    @IBOutlet private weak var originalLanguageLabel: UILabel!
+    @IBOutlet private weak var originalLanguageLabel: UILabel?
     @IBOutlet private weak var runtimeLabel: UILabel!
     @IBOutlet private weak var budgetLabel: UILabel!
     @IBOutlet private weak var revenueLabel: UILabel!
@@ -27,9 +29,11 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var detailScreenImageMovies: UIImageView!
     @IBOutlet private weak var nameMoviesDetailScreen: UILabel!
     @IBOutlet private weak var showImagesButton: UIButton!
-    @IBOutlet private weak var playVideoButtonSettingsBorderColor: UIButton!
+    @IBOutlet private weak var playVideoButton: UIButton!
 
     // MARK: - Properties
+
+    let button = UIButton()
 
     var detailMovie: DetailMovieResponse?
     var movies: Movie?
@@ -40,6 +44,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    private var addFavorites = false
 
     // MARK: - UIViewController
 
@@ -47,9 +52,15 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         configureUI()
         loadData()
-    }
+
+        }
 
     // MARK: - Actions
+
+    @objc
+    func buttonTapped(sender: UIBarButtonItem) {
+        deleteFavorites()
+    }
 
     @IBAction private func playVideoButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -85,18 +96,75 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Private methods
 
+    private func deleteFavorites() {
+        let realm = try? Realm()
+        let rewriteMovie = RewriteMovie()
+        if addFavorites == false {
+            print("записал в базу")
+            button.setImage(UIImage(named: "Image-4"), for: .normal)
+            let barButton = UIBarButtonItem(customView: button)
+            self.navigationItem.rightBarButtonItem = barButton
+            rewriteMovie.original_title = movies?.original_title ?? ""
+            rewriteMovie.overview = movies?.overview ?? ""
+            rewriteMovie.original_language = originalLanguageLabel?.text ?? ""
+            rewriteMovie.poster_path = movies?.poster_path
+            rewriteMovie.id = movies?.id ?? 0
+            try? realm?.write {
+                realm?.add(rewriteMovie)
+            }
+            addFavorites = true
+        } else {
+            guard let rewriteMovieDataBase = realm?.objects(RewriteMovie.self) else {
+                return
+            }
+            for i in rewriteMovieDataBase {
+                print("стер из базы")
+                button.setImage(UIImage(named: "addFavorites"), for: .normal)
+                let barButton = UIBarButtonItem(customView: button)
+                self.navigationItem.rightBarButtonItem = barButton
+                if i.id == movies?.id {
+                    try? realm?.write {
+                        realm?.delete(i)
+                        print("стер точно")
+                    }
+                }
+                addFavorites = false
+            }
+        }
+        NotificationCenter.default.post(name: .didReceiveData, object: nil)
+    }
+
     private func configureUI() {
-        playVideoButtonSettingsBorderColor.backgroundColor = .clear
-        playVideoButtonSettingsBorderColor.layer.borderWidth = 0.5
-        playVideoButtonSettingsBorderColor.layer.borderColor = UIColor.gray.cgColor
+
+        button.setImage(UIImage(named: "addFavorites"), for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped(sender:)), for: UIControl.Event.touchUpInside)
+        let barButton = UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem = barButton
+
+        let realm = try? Realm()
+        guard let myPuppy = realm?.objects(RewriteMovie.self) else {
+            return }
+        for i in myPuppy {
+            if i.id == movies?.id {
+                button.setImage(UIImage(named: "Image-4"), for: .normal)
+                let barButton = UIBarButtonItem(customView: button)
+                self.navigationItem.rightBarButtonItem = barButton
+                addFavorites = true
+            }
+        }
+        playVideoButton.backgroundColor = .clear
+        playVideoButton.layer.borderWidth = 0.5
+        playVideoButton.layer.borderColor = UIColor.gray.cgColor
         showImagesButton.backgroundColor = .clear
         showImagesButton.layer.borderWidth = 0.5
         showImagesButton.layer.borderColor = UIColor.gray.cgColor
         navigationItem.largeTitleDisplayMode = .never
+
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(imageTapped(tapGestureRecognizer:))
         )
+
         detailScreenImageMovies.isUserInteractionEnabled = true
         detailScreenImageMovies.addGestureRecognizer(tapGestureRecognizer)
         descriptionsLabel.text = movies?.overview
@@ -121,7 +189,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
                 return
                 }
                 DispatchQueue.main.async {
-                    self.originalLanguageLabel.text = detailMovieResponce?.original_language
+                    self.originalLanguageLabel?.text = detailMovieResponce?.original_language
                     self.fillBudget(budget: detailMovieResponce?.budget)
                     self.fillRevenue(revenue: detailMovieResponce?.revenue)
                     self.fillRunrime(runtime: detailMovieResponce?.runtime)
@@ -169,4 +237,10 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     }
 
+}
+
+extension Notification.Name {
+    static let didReceiveData = Notification.Name("didReceiveData")
+    static let didCompleteTask = Notification.Name("didCompleteTask")
+    static let completedLengthyDownload = Notification.Name("completedLengthyDownload")
 }

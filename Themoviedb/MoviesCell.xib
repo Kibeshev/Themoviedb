@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="FeG-ir-b7m">
-                        <rect key="frame" x="483" y="113" width="8" height="13"/>
+                        <rect key="frame" x="483" y="69" width="8" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="4UU-qX-yWz"/>
                             <constraint firstAttribute="width" constant="8" id="lnL-WA-qh2"/>
@@ -68,7 +68,7 @@
                 <outlet property="imageMovies" destination="YMD-W3-Hpw" id="Mhs-ja-8s3"/>
                 <outlet property="labelDescriptions" destination="TcT-3W-NbV" id="yQd-0H-1q2"/>
                 <outlet property="labelTitle" destination="LUo-af-1Z0" id="qgM-GV-Ifc"/>
-                <outlet property="showImage" destination="FeG-ir-b7m" id="Mcv-ax-4vE"/>
+                <outlet property="showArrowImage" destination="FeG-ir-b7m" id="Mcv-ax-4vE"/>
             </connections>
             <point key="canvasLocation" x="287.68115942028987" y="76.339285714285708"/>
         </tableViewCell>

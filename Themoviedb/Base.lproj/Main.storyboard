@@ -92,13 +92,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="trailing" secondItem="SlX-fo-fji" secondAttribute="trailing" id="J2B-MY-4PU"/>
+                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="top" secondItem="fCm-zO-ZkL" secondAttribute="bottom" id="6sA-aY-Blp"/>
+                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="trailing" secondItem="SlX-fo-fji" secondAttribute="trailing" id="PhY-zr-VCT"/>
                             <constraint firstItem="udf-Zo-HZQ" firstAttribute="leading" secondItem="SlX-fo-fji" secondAttribute="leading" id="QXj-1C-FbF"/>
-                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="top" secondItem="fCm-zO-ZkL" secondAttribute="bottom" id="RqV-S4-fXk"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="udf-Zo-HZQ" secondAttribute="bottom" id="TQJ-51-fij"/>
+                            <constraint firstItem="udf-Zo-HZQ" firstAttribute="bottom" secondItem="SlX-fo-fji" secondAttribute="bottom" id="T7D-M8-zhe"/>
+                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="top" secondItem="SlX-fo-fji" secondAttribute="top" id="VZX-bN-PEV"/>
                             <constraint firstItem="SlX-fo-fji" firstAttribute="trailing" secondItem="udf-Zo-HZQ" secondAttribute="trailing" id="YTL-mn-v1f"/>
-                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="top" secondItem="SlX-fo-fji" secondAttribute="top" id="oFr-wx-0ol"/>
-                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="leading" secondItem="SlX-fo-fji" secondAttribute="leading" id="y8P-zL-eo0"/>
+                            <constraint firstItem="fCm-zO-ZkL" firstAttribute="leading" secondItem="SlX-fo-fji" secondAttribute="leading" id="p3z-dm-HQu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SlX-fo-fji"/>
                     </view>
@@ -120,10 +120,25 @@
                     <view key="view" contentMode="scaleToFill" id="fng-Zt-nf9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gBj-Fx-xyc">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qRM-Kx-C9a" firstAttribute="bottom" secondItem="gBj-Fx-xyc" secondAttribute="bottom" id="7wB-iO-RPT"/>
+                            <constraint firstItem="gBj-Fx-xyc" firstAttribute="top" secondItem="qRM-Kx-C9a" secondAttribute="top" id="QOq-5m-yDT"/>
+                            <constraint firstItem="qRM-Kx-C9a" firstAttribute="trailing" secondItem="gBj-Fx-xyc" secondAttribute="trailing" id="XJi-Zn-hcs"/>
+                            <constraint firstItem="gBj-Fx-xyc" firstAttribute="leading" secondItem="qRM-Kx-C9a" secondAttribute="leading" id="rDn-ML-Mab"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qRM-Kx-C9a"/>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="9wR-Ir-FVW"/>
+                    <connections>
+                        <outlet property="tableView" destination="gBj-Fx-xyc" id="O4H-iV-FLz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDD-hq-oed" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -372,7 +387,7 @@
                         <outlet property="detailScreenImageMovies" destination="JRg-7G-TQA" id="Sgr-Nn-VvN"/>
                         <outlet property="nameMoviesDetailScreen" destination="f6M-pS-seo" id="Xju-EO-Gqq"/>
                         <outlet property="originalLanguageLabel" destination="QSH-mw-41G" id="LlM-oD-Mem"/>
-                        <outlet property="playVideoButtonSettingsBorderColor" destination="o6p-2d-6Jz" id="Ill-nW-Pth"/>
+                        <outlet property="playVideoButton" destination="o6p-2d-6Jz" id="Ill-nW-Pth"/>
                         <outlet property="revenueLabel" destination="YeQ-1R-Sd4" id="moY-Qb-r8Z"/>
                         <outlet property="revenueLabelTitle" destination="oCc-UG-T54" id="M7V-yd-IfD"/>
                         <outlet property="runtimeLabel" destination="IwF-qn-B8H" id="IJv-8g-mBF"/>
@@ -404,7 +419,7 @@
                             <constraint firstItem="pf8-2H-5dY" firstAttribute="centerX" secondItem="Em5-nA-kQr" secondAttribute="centerX" id="4yF-Xm-3b5"/>
                             <constraint firstItem="pf8-2H-5dY" firstAttribute="height" secondItem="Em5-nA-kQr" secondAttribute="height" id="Hhq-r3-tE6"/>
                             <constraint firstItem="pf8-2H-5dY" firstAttribute="centerY" secondItem="Em5-nA-kQr" secondAttribute="centerY" id="Qmq-NV-ype"/>
-                            <constraint firstItem="pf8-2H-5dY" firstAttribute="width" secondItem="h0u-qz-4l4" secondAttribute="width" id="aeC-wS-ocp"/>
+                            <constraint firstItem="pf8-2H-5dY" firstAttribute="width" secondItem="Em5-nA-kQr" secondAttribute="width" id="aeC-wS-ocp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Em5-nA-kQr"/>
                     </view>

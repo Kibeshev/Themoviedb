@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		B55CAB6122CD25CF00B5856E /* FavoritesMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB6022CD25CF00B5856E /* FavoritesMoviesViewController.swift */; };
 		B55CAB8522D1D6F100B5856E /* MoviesSegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB8422D1D6F100B5856E /* MoviesSegmentViewController.swift */; };
 		B55CAB8722D2854900B5856E /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CAB8622D2854900B5856E /* SearchMoviesViewController.swift */; };
+		B55FC26D22F198190029A944 /* movieEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FC26C22F198190029A944 /* movieEntry.swift */; };
 		B579BC7B229FE31C009DE95D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579BC7A229FE31C009DE95D /* WebViewController.swift */; };
 		B579BC7D22A24614009DE95D /* ImagesCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579BC7C22A24614009DE95D /* ImagesCarouselViewController.swift */; };
 		B583F1A8228AB89B0053016E /* OpenMoviesImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */; };
@@ -50,6 +51,7 @@
 		B55CAB6022CD25CF00B5856E /* FavoritesMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMoviesViewController.swift; sourceTree = "<group>"; };
 		B55CAB8422D1D6F100B5856E /* MoviesSegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSegmentViewController.swift; sourceTree = "<group>"; };
 		B55CAB8622D2854900B5856E /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
+		B55FC26C22F198190029A944 /* movieEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieEntry.swift; sourceTree = "<group>"; };
 		B579BC7A229FE31C009DE95D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B579BC7C22A24614009DE95D /* ImagesCarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCarouselViewController.swift; sourceTree = "<group>"; };
 		B583F1A7228AB89B0053016E /* OpenMoviesImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMoviesImageViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,14 @@
 			name = Subviews;
 			sourceTree = "<group>";
 		};
+		B55FC26B22F197F00029A944 /* Realm Model */ = {
+			isa = PBXGroup;
+			children = (
+				B55FC26C22F198190029A944 /* movieEntry.swift */,
+			);
+			path = "Realm Model";
+			sourceTree = "<group>";
+		};
 		B5FE26692281C6D400B378BA = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +171,7 @@
 		B5FE26742281C6D500B378BA /* Themoviedb */ = {
 			isa = PBXGroup;
 			children = (
+				B55FC26B22F197F00029A944 /* Realm Model */,
 				B55CAB5722CC14AD00B5856E /* Managers  */,
 				B55CAB5822CC14C500B5856E /* Models */,
 				B55CAB5922CC152000B5856E /* View Controllers  */,
@@ -250,17 +261,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B5857D5622BFBFDB0087B32D /* SwiftLint */ = {
@@ -311,6 +321,7 @@
 				B583F1A8228AB89B0053016E /* OpenMoviesImageViewController.swift in Sources */,
 				B50835E822DF2FA600189B45 /* MoviesCell.swift in Sources */,
 				B5FE26882281C7D700B378BA /* MoviesAPIManager.swift in Sources */,
+				B55FC26D22F198190029A944 /* movieEntry.swift in Sources */,
 				B55CAB5622CA8C8400B5856E /* Video.swift in Sources */,
 				B579BC7B229FE31C009DE95D /* WebViewController.swift in Sources */,
 				B539F0072288647600EB4AA0 /* MovieDetailViewController.swift in Sources */,
@@ -474,6 +485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZA784FKXHV;
 				INFOPLIST_FILE = Themoviedb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,6 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZA784FKXHV;
 				INFOPLIST_FILE = Themoviedb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Themoviedb/Pods-Themoviedb-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework
+${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
+${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework
