@@ -67,13 +67,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udf-Zo-HZQ">
-                                <rect key="frame" x="0.0" y="184" width="414" height="629"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="681"/>
                                 <connections>
                                     <segue destination="jxG-M6-d0o" kind="embed" id="IuD-JY-7wM"/>
                                 </connections>
                             </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCm-zO-ZkL">
-                                <rect key="frame" x="0.0" y="140" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem title="segmentedControl" style="plain" id="LTI-YV-dKR">
@@ -506,11 +506,11 @@
             </objects>
             <point key="canvasLocation" x="1309" y="148"/>
         </scene>
-        <!--Seaarch-->
+        <!--Search-->
         <scene sceneID="tXQ-zg-hNk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R0U-lT-hhd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Seaarch" image="Image-3" id="x7v-ad-l9Y"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="Image-3" id="x7v-ad-l9Y"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Icg-kt-ij2">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -550,8 +550,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3zF-hi-j4J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="feed" id="myS-Nv-qxh"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="89p-1Z-6Eb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="89p-1Z-6Eb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

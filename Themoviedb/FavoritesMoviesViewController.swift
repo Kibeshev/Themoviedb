@@ -102,6 +102,7 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
             ) as? MoviesCell
         let movieRealm = favoriteMovies[indexPath.row]
         cell?.configure(movie: movieRealm)
+        cell?.selectionStyle = .none
         return cell ?? UITableViewCell()
     }
 
