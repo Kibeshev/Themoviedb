@@ -11,11 +11,21 @@ import RealmSwift
 
 class FavoritesMoviesViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    var favoriteMovies: [Movie] = []
+    // MARK: - Subviews
+
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var emptyImage: UIImageView!
+    @IBOutlet private weak var emptyLabel: UILabel!
+
+    // MARK: - Properties
+
+    private var favoriteMovies: [Movie] = []
+
+    // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView?.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
         loadMoviesFavorites()
@@ -25,12 +35,16 @@ class FavoritesMoviesViewController: UIViewController {
         )
     }
 
+    // MARK: - Actions
+
     @objc
     func onDidReceiveData(_ notification: Notification) {
         loadMoviesFavorites()
     }
 
-    func loadMoviesFavorites() {
+    // MARK: - Private methods
+
+    private func loadMoviesFavorites() {
         var array: [Movie] = []
         do {
             let realm = try Realm()
@@ -61,13 +75,24 @@ class FavoritesMoviesViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension FavoritesMoviesViewController: UITableViewDelegate {
 
 }
 
+// MARK: - UITableViewDataSource
+
 extension FavoritesMoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if favoriteMovies.isEmpty {
+            emptyLabel.isHidden = false
+            emptyImage.isHidden = false
+        } else {
+            emptyImage.isHidden = true
+            emptyLabel.isHidden = true
+        }
         return favoriteMovies.count
     }
 
@@ -100,6 +125,7 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
         if editingStyle == .delete {
             favoriteMovies.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
+            tableView.reloadData()
         }
     }
 }

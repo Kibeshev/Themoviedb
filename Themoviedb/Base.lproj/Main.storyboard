@@ -125,18 +125,40 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-5" translatesAutoresizingMaskIntoConstraints="NO" id="e8L-y7-6I3">
+                                <rect key="frame" x="170.5" y="389" width="73" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="dDd-wK-EXI"/>
+                                    <constraint firstAttribute="height" constant="57" id="wsV-Z1-l6T"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is nothing. Try to add something in favorites." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wp-ds-emi">
+                                <rect key="frame" x="107" y="446" width="200" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="reW-4Y-fo7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qRM-Kx-C9a" firstAttribute="bottom" secondItem="gBj-Fx-xyc" secondAttribute="bottom" id="7wB-iO-RPT"/>
                             <constraint firstItem="gBj-Fx-xyc" firstAttribute="top" secondItem="qRM-Kx-C9a" secondAttribute="top" id="QOq-5m-yDT"/>
+                            <constraint firstItem="2wp-ds-emi" firstAttribute="centerX" secondItem="qRM-Kx-C9a" secondAttribute="centerX" id="Sdb-LW-Kqd"/>
+                            <constraint firstItem="e8L-y7-6I3" firstAttribute="centerX" secondItem="2wp-ds-emi" secondAttribute="centerX" id="UBN-FM-iDm"/>
                             <constraint firstItem="qRM-Kx-C9a" firstAttribute="trailing" secondItem="gBj-Fx-xyc" secondAttribute="trailing" id="XJi-Zn-hcs"/>
                             <constraint firstItem="gBj-Fx-xyc" firstAttribute="leading" secondItem="qRM-Kx-C9a" secondAttribute="leading" id="rDn-ML-Mab"/>
+                            <constraint firstItem="2wp-ds-emi" firstAttribute="centerY" secondItem="qRM-Kx-C9a" secondAttribute="centerY" id="ucc-IE-oGK"/>
+                            <constraint firstItem="e8L-y7-6I3" firstAttribute="bottom" secondItem="2wp-ds-emi" secondAttribute="top" id="ygc-Oc-VBj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qRM-Kx-C9a"/>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="9wR-Ir-FVW"/>
                     <connections>
+                        <outlet property="emptyImage" destination="e8L-y7-6I3" id="LnM-Uo-G9w"/>
+                        <outlet property="emptyLabel" destination="2wp-ds-emi" id="38i-nd-CIw"/>
                         <outlet property="tableView" destination="gBj-Fx-xyc" id="O4H-iV-FLz"/>
                     </connections>
                 </viewController>
@@ -546,6 +568,7 @@
         <image name="Image" width="75" height="113"/>
         <image name="Image-2" width="29" height="24"/>
         <image name="Image-3" width="25" height="25"/>
+        <image name="Image-5" width="61" height="77"/>
         <image name="feed" width="27" height="25"/>
     </resources>
 </document>
