@@ -98,7 +98,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     private func deleteFavorites() {
         let realm = try? Realm()
-        let rewriteMovie = RewriteMovie()
+        let rewriteMovie = MovieDatabaseModel()
         if addFavorites == false {
             print("записал в базу")
             button.setImage(UIImage(named: "Image-4"), for: .normal)
@@ -114,7 +114,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
             }
             addFavorites = true
         } else {
-            guard let rewriteMovieDataBase = realm?.objects(RewriteMovie.self) else {
+            guard let rewriteMovieDataBase = realm?.objects(MovieDatabaseModel.self) else {
                 return
             }
             for i in rewriteMovieDataBase {
@@ -142,7 +142,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.rightBarButtonItem = barButton
 
         let realm = try? Realm()
-        guard let myPuppy = realm?.objects(RewriteMovie.self) else {
+        guard let myPuppy = realm?.objects(MovieDatabaseModel.self) else {
             return }
         for i in myPuppy {
             if i.id == movies?.id {

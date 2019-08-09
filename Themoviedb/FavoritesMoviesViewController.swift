@@ -28,26 +28,26 @@ class FavoritesMoviesViewController: UIViewController {
         tableView?.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        loadMoviesFavorites()
+        loadFavoriteMovies()
         tableView.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
         NotificationCenter.default.addObserver(
-            self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
+            self, selector: #selector(selectedFavoriteButton(_:)), name: .didReceiveData, object: nil)
     }
 
     // MARK: - Actions
 
     @objc
-    func onDidReceiveData(_ notification: Notification) {
-        loadMoviesFavorites()
+    func selectedFavoriteButton(_ notification: Notification) {
+        loadFavoriteMovies()
     }
 
     // MARK: - Private methods
 
-    private func loadMoviesFavorites() {
+    private func loadFavoriteMovies() {
         var array: [Movie] = []
         do {
             let realm = try Realm()
-            let myPuppy = realm.objects(RewriteMovie.self)
+            let myPuppy = realm.objects(MovieDatabaseModel.self)
             for i in myPuppy {
                 let movie = Movie(
                     vote_count: nil,
@@ -110,7 +110,7 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
         ) {
             do {
             let realm = try Realm()
-            let myPuppy = realm.objects(RewriteMovie.self)
+            let myPuppy = realm.objects(MovieDatabaseModel.self)
             for i in myPuppy {
                 print("стер из базы по свайпу делит")
                 if i.id == favoriteMovies[indexPath.row].id {
