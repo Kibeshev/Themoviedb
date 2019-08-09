@@ -31,8 +31,7 @@ class FavoritesMoviesViewController: UIViewController {
         loadMoviesFavorites()
         tableView.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
         NotificationCenter.default.addObserver(
-            self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil
-        )
+            self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
     }
 
     // MARK: - Actions
