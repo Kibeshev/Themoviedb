@@ -31,7 +31,7 @@ class FavoritesMoviesViewController: UIViewController {
         loadFavoriteMovies()
         tableView.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
         NotificationCenter.default.addObserver(
-            self, selector: #selector(selectedFavoriteButton(_:)), name: .pressAddFavoritesButton, object: nil)
+            self, selector: #selector(selectedFavoriteButton(_:)), name: .favoriteMoviesUpdated, object: nil)
     }
 
     // MARK: - Actions
@@ -47,19 +47,19 @@ class FavoritesMoviesViewController: UIViewController {
         var array: [Movie] = []
         do {
             let realm = try Realm()
-            let myPuppy = realm.objects(MovieDatabaseModel.self)
-            for i in myPuppy {
+            let realmObjects = realm.objects(MovieDatabaseModel.self)
+            for element in realmObjects {
                 let movie = Movie(
                     vote_count: nil,
-                    id: i.id.value,
+                    id: element.id.value,
                     video: false,
                     vote_average: nil,
-                    title: i.title,
+                    title: element.title,
                     popularity: nil,
-                    poster_path: i.poster_path,
-                    original_language: i.original_language,
-                    original_title: i.original_title,
-                    overview: i.overview,
+                    poster_path: element.poster_path,
+                    original_language: element.original_language,
+                    original_title: element.original_title,
+                    overview: element.overview,
                     detailMovieResponce: nil
                 )
                 array.append(movie)
@@ -68,11 +68,10 @@ class FavoritesMoviesViewController: UIViewController {
             print(error)
         }
         favoriteMovies = array
-        isEmptyTableView()
-        tableView.reloadData()
+        reloadData()
     }
 
-    private func isEmptyTableView() {
+    private func reloadData() {
         if favoriteMovies.isEmpty {
             emptyLabel.isHidden = false
             emptyImage.isHidden = false
@@ -80,6 +79,7 @@ class FavoritesMoviesViewController: UIViewController {
             emptyImage.isHidden = true
             emptyLabel.isHidden = true
         }
+        tableView.reloadData()
     }
 }
 
@@ -113,21 +113,20 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
             do {
                 let realm = try Realm()
                 let realmObjects = realm.objects(MovieDatabaseModel.self)
-                for i in realmObjects {
-                    if i.id.value == favoriteMovies[indexPath.row].id {
+                for element in realmObjects {
+                    if element.id.value == favoriteMovies[indexPath.row].id {
                         try realm.write {
-                            realm.delete(i)
+                            realm.delete(element)
                         }
                     }
                 }
             } catch {
-                print("\(error)")
+                print(error)
         }
         if editingStyle == .delete {
             favoriteMovies.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
-            isEmptyTableView()
-            tableView.reloadData()
+            reloadData()
         }
     }
 }

@@ -57,7 +57,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     @objc
     func favoritesButtonTapped(sender: UIBarButtonItem) {
-        deleteFromFavorites()
+        updateFavoritesViewController()
     }
 
     @IBAction private func playVideoButton(_ sender: Any) {
@@ -94,39 +94,39 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Private methods
 
-    private func deleteFromFavorites() {
+    private func updateFavoritesViewController() {
         let realm = try? Realm()
-        let rewriteMovie = MovieDatabaseModel()
+        let movieDatabaseModel = MovieDatabaseModel()
         if isAddedToFavorites == false {
             heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
             let barButton = UIBarButtonItem(customView: heartButton)
             self.navigationItem.rightBarButtonItem = barButton
-            rewriteMovie.original_title = movies?.original_title
-            rewriteMovie.overview = movies?.overview
-            rewriteMovie.original_language = originalLanguageLabel?.text
-            rewriteMovie.poster_path = movies?.poster_path
-            rewriteMovie.id.value = movies?.id
+            movieDatabaseModel.original_title = movies?.original_title
+            movieDatabaseModel.overview = movies?.overview
+            movieDatabaseModel.original_language = movies?.original_language
+            movieDatabaseModel.poster_path = movies?.poster_path
+            movieDatabaseModel.id.value = movies?.id
             try? realm?.write {
-                realm?.add(rewriteMovie)
+                realm?.add(movieDatabaseModel)
             }
             isAddedToFavorites = true
         } else {
             guard let rewriteMovieDataBase = realm?.objects(MovieDatabaseModel.self) else {
                 return
             }
-            for i in rewriteMovieDataBase {
+            for element in rewriteMovieDataBase {
                 heartButton.setImage(UIImage(named: "addFavorites"), for: .normal)
                 let barButton = UIBarButtonItem(customView: heartButton)
                 self.navigationItem.rightBarButtonItem = barButton
-                if i.id.value == movies?.id {
+                if element.id.value == movies?.id {
                     try? realm?.write {
-                        realm?.delete(i)
+                        realm?.delete(element)
                     }
                 }
                 isAddedToFavorites = false
             }
         }
-        NotificationCenter.default.post(name: .pressAddFavoritesButton, object: nil)
+        NotificationCenter.default.post(name: .favoriteMoviesUpdated, object: nil)
     }
 
     private func configureUI() {
@@ -162,8 +162,8 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         let realm = try? Realm()
         guard let realmObjects = realm?.objects(MovieDatabaseModel.self) else {
             return }
-        for i in realmObjects {
-            if i.id.value == movies?.id {
+        for element in realmObjects {
+            if element.id.value == movies?.id {
                 heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
                 let barButton = UIBarButtonItem(customView: heartButton)
                 self.navigationItem.rightBarButtonItem = barButton

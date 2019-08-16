@@ -9,5 +9,5 @@
 import Foundation
 
 extension Notification.Name {
-    static let pressAddFavoritesButton = Notification.Name("pressAddFavoritesButton")
+    static let favoriteMoviesUpdated = Notification.Name("pressAddFavoritesButton")
 }
