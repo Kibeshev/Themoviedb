@@ -11,12 +11,13 @@ import RealmSwift
 
 class MovieDatabaseModel: Object {
 
-    @objc dynamic var vote_count = 0
-    @objc dynamic var id = 0
-    @objc dynamic var video = false
-    @objc dynamic var vote_average = 0.0
+    let vote_count = RealmOptional<Int>()
+    let id = RealmOptional<Int>()
+    let value = RealmOptional<Int>()
+    let video = RealmOptional<Bool>()
+    let vote_average = RealmOptional<Double>()
     @objc dynamic var title: String?
-    @objc dynamic var popularity = 0.0
+    let popularity = RealmOptional<Double>()
     @objc dynamic var poster_path: String?
     @objc dynamic var original_language: String?
     @objc dynamic var original_title: String?
@@ -31,7 +32,7 @@ class MovieDatabaseModel: Object {
 class DetailMovieResponseDatabaseModel: Object {
 
     @objc dynamic var original_language: String?
-    @objc dynamic var budget = 0
-    @objc dynamic var revenue = 0
-    @objc dynamic var runtime = 0
+    let budget = RealmOptional<Int>()
+    let revenue = RealmOptional<Int>()
+    let runtime = RealmOptional<Int>()
 }

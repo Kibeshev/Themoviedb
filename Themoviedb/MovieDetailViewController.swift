@@ -14,7 +14,6 @@ import RealmSwift
 class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Subviews
-    let favoritesVC = FavoritesMoviesViewController()
 
     @IBOutlet private weak var stackViewRuntime: UIStackView!
     @IBOutlet private weak var stackViewBudget: UIStackView!
@@ -33,10 +32,9 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Properties
 
-    let button = UIButton()
-
-    var detailMovie: DetailMovieResponse?
     var movies: Movie?
+    private let heartButton = UIButton()
+    private var detailMovie: DetailMovieResponse?
     private var detailManager = MoviesAPIManager()
     private var formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -44,7 +42,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         formatter.numberStyle = .decimal
         return formatter
     }()
-    private var addFavorites = false
+    private var isAddedToFavorites = false
 
     // MARK: - UIViewController
 
@@ -58,8 +56,8 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Actions
 
     @objc
-    func buttonTapped(sender: UIBarButtonItem) {
-        deleteFavorites()
+    func favoritesButtonTapped(sender: UIBarButtonItem) {
+        deleteFromFavorites()
     }
 
     @IBAction private func playVideoButton(_ sender: Any) {
@@ -96,69 +94,42 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Private methods
 
-    private func deleteFavorites() {
+    private func deleteFromFavorites() {
         let realm = try? Realm()
         let rewriteMovie = MovieDatabaseModel()
-        if addFavorites == false {
-            print("записал в базу")
-            button.setImage(UIImage(named: "Image-4"), for: .normal)
-            let barButton = UIBarButtonItem(customView: button)
+        if isAddedToFavorites == false {
+            heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
+            let barButton = UIBarButtonItem(customView: heartButton)
             self.navigationItem.rightBarButtonItem = barButton
-            rewriteMovie.original_title = movies?.original_title ?? ""
-            rewriteMovie.overview = movies?.overview ?? ""
-            rewriteMovie.original_language = originalLanguageLabel?.text ?? ""
+            rewriteMovie.original_title = movies?.original_title
+            rewriteMovie.overview = movies?.overview
+            rewriteMovie.original_language = originalLanguageLabel?.text
             rewriteMovie.poster_path = movies?.poster_path
-            rewriteMovie.id = movies?.id ?? 0
+            rewriteMovie.id.value = movies?.id
             try? realm?.write {
                 realm?.add(rewriteMovie)
             }
-            addFavorites = true
+            isAddedToFavorites = true
         } else {
             guard let rewriteMovieDataBase = realm?.objects(MovieDatabaseModel.self) else {
                 return
             }
             for i in rewriteMovieDataBase {
-                print("стер из базы")
-                button.setImage(UIImage(named: "addFavorites"), for: .normal)
-                let barButton = UIBarButtonItem(customView: button)
+                heartButton.setImage(UIImage(named: "addFavorites"), for: .normal)
+                let barButton = UIBarButtonItem(customView: heartButton)
                 self.navigationItem.rightBarButtonItem = barButton
-                if i.id == movies?.id {
+                if i.id.value == movies?.id {
                     try? realm?.write {
                         realm?.delete(i)
-                        print("стер точно")
                     }
                 }
-                addFavorites = false
+                isAddedToFavorites = false
             }
         }
-        NotificationCenter.default.post(name: .didReceiveData, object: nil)
+        NotificationCenter.default.post(name: .pressAddFavoritesButton, object: nil)
     }
 
     private func configureUI() {
-
-        button.setImage(UIImage(named: "addFavorites"), for: .normal)
-        button.addTarget(self, action: #selector(buttonTapped(sender:)), for: UIControl.Event.touchUpInside)
-        let barButton = UIBarButtonItem(customView: button)
-        self.navigationItem.rightBarButtonItem = barButton
-
-        let realm = try? Realm()
-        guard let myPuppy = realm?.objects(MovieDatabaseModel.self) else {
-            return }
-        for i in myPuppy {
-            if i.id == movies?.id {
-                button.setImage(UIImage(named: "Image-4"), for: .normal)
-                let barButton = UIBarButtonItem(customView: button)
-                self.navigationItem.rightBarButtonItem = barButton
-                addFavorites = true
-            }
-        }
-        playVideoButton.backgroundColor = .clear
-        playVideoButton.layer.borderWidth = 0.5
-        playVideoButton.layer.borderColor = UIColor.gray.cgColor
-        showImagesButton.backgroundColor = .clear
-        showImagesButton.layer.borderWidth = 0.5
-        showImagesButton.layer.borderColor = UIColor.gray.cgColor
-        navigationItem.largeTitleDisplayMode = .never
 
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -171,8 +142,33 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         nameMoviesDetailScreen.text = movies?.original_title
         if let image = movies?.poster_path,
             let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)") {
-
             Nuke.loadImage(with: imageURL, into: detailScreenImageMovies)
+        }
+        playVideoButton.backgroundColor = .clear
+        playVideoButton.layer.borderWidth = 0.5
+        playVideoButton.layer.borderColor = UIColor.gray.cgColor
+        showImagesButton.backgroundColor = .clear
+        showImagesButton.layer.borderWidth = 0.5
+        showImagesButton.layer.borderColor = UIColor.gray.cgColor
+        navigationItem.largeTitleDisplayMode = .never
+
+        heartButton.setImage(UIImage(named: "addFavorites"), for: .normal)
+        heartButton.addTarget(
+            self, action: #selector(favoritesButtonTapped(sender:)), for: UIControl.Event.touchUpInside
+        )
+        let barButton = UIBarButtonItem(customView: heartButton)
+        self.navigationItem.rightBarButtonItem = barButton
+
+        let realm = try? Realm()
+        guard let realmObjects = realm?.objects(MovieDatabaseModel.self) else {
+            return }
+        for i in realmObjects {
+            if i.id.value == movies?.id {
+                heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
+                let barButton = UIBarButtonItem(customView: heartButton)
+                self.navigationItem.rightBarButtonItem = barButton
+                isAddedToFavorites = true
+            }
         }
     }
 
@@ -237,10 +233,4 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     }
 
-}
-
-extension Notification.Name {
-    static let didReceiveData = Notification.Name("didReceiveData")
-    static let didCompleteTask = Notification.Name("didCompleteTask")
-    static let completedLengthyDownload = Notification.Name("completedLengthyDownload")
 }

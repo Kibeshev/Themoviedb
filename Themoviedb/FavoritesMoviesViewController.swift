@@ -31,7 +31,7 @@ class FavoritesMoviesViewController: UIViewController {
         loadFavoriteMovies()
         tableView.register(UINib(nibName: "MoviesCell", bundle: Bundle.main), forCellReuseIdentifier: "moviesCell")
         NotificationCenter.default.addObserver(
-            self, selector: #selector(selectedFavoriteButton(_:)), name: .didReceiveData, object: nil)
+            self, selector: #selector(selectedFavoriteButton(_:)), name: .pressAddFavoritesButton, object: nil)
     }
 
     // MARK: - Actions
@@ -51,7 +51,7 @@ class FavoritesMoviesViewController: UIViewController {
             for i in myPuppy {
                 let movie = Movie(
                     vote_count: nil,
-                    id: i.id,
+                    id: i.id.value,
                     video: false,
                     vote_average: nil,
                     title: i.title,
@@ -64,13 +64,22 @@ class FavoritesMoviesViewController: UIViewController {
                 )
                 array.append(movie)
             }
-
-            print("получил на экране фаворитс")
         } catch {
-            print("Error")
+            print(error)
         }
         favoriteMovies = array
+        isEmptyTableView()
         tableView.reloadData()
+    }
+
+    private func isEmptyTableView() {
+        if favoriteMovies.isEmpty {
+            emptyLabel.isHidden = false
+            emptyImage.isHidden = false
+        } else {
+            emptyImage.isHidden = true
+            emptyLabel.isHidden = true
+        }
     }
 }
 
@@ -85,13 +94,6 @@ extension FavoritesMoviesViewController: UITableViewDelegate {
 extension FavoritesMoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if favoriteMovies.isEmpty {
-            emptyLabel.isHidden = false
-            emptyImage.isHidden = false
-        } else {
-            emptyImage.isHidden = true
-            emptyLabel.isHidden = true
-        }
         return favoriteMovies.count
     }
 
@@ -109,22 +111,22 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
                    commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath
         ) {
             do {
-            let realm = try Realm()
-            let myPuppy = realm.objects(MovieDatabaseModel.self)
-            for i in myPuppy {
-                print("стер из базы по свайпу делит")
-                if i.id == favoriteMovies[indexPath.row].id {
-                    try realm.write {
-                        realm.delete(i)
+                let realm = try Realm()
+                let realmObjects = realm.objects(MovieDatabaseModel.self)
+                for i in realmObjects {
+                    if i.id.value == favoriteMovies[indexPath.row].id {
+                        try realm.write {
+                            realm.delete(i)
+                        }
                     }
                 }
-            }
             } catch {
                 print("\(error)")
-            }
+        }
         if editingStyle == .delete {
             favoriteMovies.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
+            isEmptyTableView()
             tableView.reloadData()
         }
     }
