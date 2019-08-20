@@ -30,7 +30,6 @@ class MoviesViewController: UIViewController {
         loadData()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
         title = "Poster"
     }
 

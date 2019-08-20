@@ -9,5 +9,5 @@ target 'Themoviedb' do
 
   # Pods for Themoviedb
 pod 'Nuke', '~> 7.0'
+pod 'RealmSwift'
 end
-

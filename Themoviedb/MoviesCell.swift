@@ -14,7 +14,7 @@ class MoviesCell: UITableViewCell {
     // MARK: - Subviews
 
     @IBOutlet private weak var imageMovies: UIImageView!
-    @IBOutlet private weak var showImage: UIImageView!
+    @IBOutlet private weak var showArrowImage: UIImageView!
     @IBOutlet private weak var labelDescriptions: UILabel!
     @IBOutlet private weak var labelTitle: UILabel!
 

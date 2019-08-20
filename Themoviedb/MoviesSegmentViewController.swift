@@ -43,4 +43,5 @@ class MoviesSegmentViewController: UIViewController {
             pageViewController?.setPage(index: segmentIndex)
         }
     }
+
 }

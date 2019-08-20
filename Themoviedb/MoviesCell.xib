@@ -23,17 +23,19 @@
                         <rect key="frame" x="16" y="8" width="75" height="113"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="QgQ-Fw-R7F"/>
-                            <constraint firstAttribute="height" constant="113" id="hXC-fo-sns"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUo-af-1Z0">
                         <rect key="frame" x="99" y="15" width="368" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="T8d-AW-h3z"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelSubTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcT-3W-NbV">
-                        <rect key="frame" x="99" y="38" width="368" height="19.5"/>
+                        <rect key="frame" x="99" y="38" width="368" height="79"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -54,7 +56,7 @@
                     <constraint firstItem="FeG-ir-b7m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="58" id="ahI-yx-4TV"/>
                     <constraint firstItem="LUo-af-1Z0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="fku-2k-aHk"/>
                     <constraint firstItem="YMD-W3-Hpw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="hO7-5E-EjF"/>
-                    <constraint firstAttribute="bottom" secondItem="TcT-3W-NbV" secondAttribute="bottom" constant="15" id="iAK-Nz-fWC"/>
+                    <constraint firstAttribute="bottom" secondItem="TcT-3W-NbV" secondAttribute="bottom" constant="12" id="iAK-Nz-fWC"/>
                     <constraint firstItem="TcT-3W-NbV" firstAttribute="top" secondItem="LUo-af-1Z0" secondAttribute="bottom" constant="4" id="mmm-dB-dM7"/>
                     <constraint firstItem="TcT-3W-NbV" firstAttribute="leading" secondItem="YMD-W3-Hpw" secondAttribute="trailing" constant="8" id="mnd-gh-beQ"/>
                     <constraint firstItem="LUo-af-1Z0" firstAttribute="leading" secondItem="YMD-W3-Hpw" secondAttribute="trailing" constant="8" id="nQz-PT-O26"/>
@@ -68,7 +70,7 @@
                 <outlet property="imageMovies" destination="YMD-W3-Hpw" id="Mhs-ja-8s3"/>
                 <outlet property="labelDescriptions" destination="TcT-3W-NbV" id="yQd-0H-1q2"/>
                 <outlet property="labelTitle" destination="LUo-af-1Z0" id="qgM-GV-Ifc"/>
-                <outlet property="showImage" destination="FeG-ir-b7m" id="Mcv-ax-4vE"/>
+                <outlet property="showArrowImage" destination="FeG-ir-b7m" id="Mcv-ax-4vE"/>
             </connections>
             <point key="canvasLocation" x="287.68115942028987" y="76.339285714285708"/>
         </tableViewCell>

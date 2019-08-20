@@ -9,6 +9,7 @@
 import UIKit
 import Nuke
 import Foundation
+import RealmSwift
 
 class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
@@ -18,7 +19,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var stackViewBudget: UIStackView!
     @IBOutlet private weak var stackViewRevenue: UIStackView!
     @IBOutlet private weak var revenueLabelTitle: UILabel!
-    @IBOutlet private weak var originalLanguageLabel: UILabel!
+    @IBOutlet private weak var originalLanguageLabel: UILabel?
     @IBOutlet private weak var runtimeLabel: UILabel!
     @IBOutlet private weak var budgetLabel: UILabel!
     @IBOutlet private weak var revenueLabel: UILabel!
@@ -27,12 +28,13 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var detailScreenImageMovies: UIImageView!
     @IBOutlet private weak var nameMoviesDetailScreen: UILabel!
     @IBOutlet private weak var showImagesButton: UIButton!
-    @IBOutlet private weak var playVideoButtonSettingsBorderColor: UIButton!
+    @IBOutlet private weak var playVideoButton: UIButton!
 
     // MARK: - Properties
 
-    var detailMovie: DetailMovieResponse?
     var movies: Movie?
+    private let heartButton = UIButton()
+    private var detailMovie: DetailMovieResponse?
     private var detailManager = MoviesAPIManager()
     private var formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -40,6 +42,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    private var isAddedToFavorites = false
 
     // MARK: - UIViewController
 
@@ -47,9 +50,15 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         configureUI()
         loadData()
-    }
+
+        }
 
     // MARK: - Actions
+
+    @objc
+    func favoritesButtonTapped(sender: UIBarButtonItem) {
+        updateFavoritesState()
+    }
 
     @IBAction private func playVideoButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -85,26 +94,81 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Private methods
 
+    private func updateFavoritesState() {
+        let realm = try? Realm()
+        let movieDatabaseModel = MovieDatabaseModel()
+        if isAddedToFavorites == false {
+            heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
+            let barButton = UIBarButtonItem(customView: heartButton)
+            self.navigationItem.rightBarButtonItem = barButton
+            movieDatabaseModel.original_title = movies?.original_title
+            movieDatabaseModel.overview = movies?.overview
+            movieDatabaseModel.original_language = movies?.original_language
+            movieDatabaseModel.poster_path = movies?.poster_path
+            movieDatabaseModel.id.value = movies?.id
+            try? realm?.write {
+                realm?.add(movieDatabaseModel)
+            }
+            isAddedToFavorites = true
+        } else {
+            guard let rewriteMovieDataBase = realm?.objects(MovieDatabaseModel.self) else {
+                return
+            }
+            for element in rewriteMovieDataBase {
+                heartButton.setImage(UIImage(named: "addFavorites"), for: .normal)
+                let barButton = UIBarButtonItem(customView: heartButton)
+                self.navigationItem.rightBarButtonItem = barButton
+                if element.id.value == movies?.id {
+                    try? realm?.write {
+                        realm?.delete(element)
+                    }
+                }
+                isAddedToFavorites = false
+            }
+        }
+        NotificationCenter.default.post(name: .favoriteMoviesUpdated, object: nil)
+    }
+
     private func configureUI() {
-        playVideoButtonSettingsBorderColor.backgroundColor = .clear
-        playVideoButtonSettingsBorderColor.layer.borderWidth = 0.5
-        playVideoButtonSettingsBorderColor.layer.borderColor = UIColor.gray.cgColor
-        showImagesButton.backgroundColor = .clear
-        showImagesButton.layer.borderWidth = 0.5
-        showImagesButton.layer.borderColor = UIColor.gray.cgColor
-        navigationItem.largeTitleDisplayMode = .never
+
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(imageTapped(tapGestureRecognizer:))
         )
+
         detailScreenImageMovies.isUserInteractionEnabled = true
         detailScreenImageMovies.addGestureRecognizer(tapGestureRecognizer)
         descriptionsLabel.text = movies?.overview
         nameMoviesDetailScreen.text = movies?.original_title
         if let image = movies?.poster_path,
             let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)") {
-
             Nuke.loadImage(with: imageURL, into: detailScreenImageMovies)
+        }
+        playVideoButton.backgroundColor = .clear
+        playVideoButton.layer.borderWidth = 0.5
+        playVideoButton.layer.borderColor = UIColor.gray.cgColor
+        showImagesButton.backgroundColor = .clear
+        showImagesButton.layer.borderWidth = 0.5
+        showImagesButton.layer.borderColor = UIColor.gray.cgColor
+        navigationItem.largeTitleDisplayMode = .never
+
+        heartButton.setImage(UIImage(named: "addFavorites"), for: .normal)
+        heartButton.addTarget(
+            self, action: #selector(favoritesButtonTapped(sender:)), for: UIControl.Event.touchUpInside
+        )
+        let barButton = UIBarButtonItem(customView: heartButton)
+        self.navigationItem.rightBarButtonItem = barButton
+
+        let realm = try? Realm()
+        guard let realmObjects = realm?.objects(MovieDatabaseModel.self) else {
+            return }
+        for element in realmObjects {
+            if element.id.value == movies?.id {
+                heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
+                let barButton = UIBarButtonItem(customView: heartButton)
+                self.navigationItem.rightBarButtonItem = barButton
+                isAddedToFavorites = true
+            }
         }
     }
 
@@ -121,7 +185,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
                 return
                 }
                 DispatchQueue.main.async {
-                    self.originalLanguageLabel.text = detailMovieResponce?.original_language
+                    self.originalLanguageLabel?.text = detailMovieResponce?.original_language
                     self.fillBudget(budget: detailMovieResponce?.budget)
                     self.fillRevenue(revenue: detailMovieResponce?.revenue)
                     self.fillRunrime(runtime: detailMovieResponce?.runtime)
