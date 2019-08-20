@@ -57,7 +57,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     @objc
     func favoritesButtonTapped(sender: UIBarButtonItem) {
-        updateFavoritesViewController()
+        updateFavoritesState()
     }
 
     @IBAction private func playVideoButton(_ sender: Any) {
@@ -94,7 +94,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Private methods
 
-    private func updateFavoritesViewController() {
+    private func updateFavoritesState() {
         let realm = try? Realm()
         let movieDatabaseModel = MovieDatabaseModel()
         if isAddedToFavorites == false {
