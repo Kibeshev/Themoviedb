@@ -106,7 +106,7 @@ extension MoviesViewController: UITableViewDelegate {
         }
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
-        controller.movies = self.movies[indexPath.row]
+        controller.movie = self.movies[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

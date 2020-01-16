@@ -11,16 +11,16 @@ import RealmSwift
 
 class MovieEntry: Object {
 
-    let vote_count = RealmOptional<Int>()
+    let voteCount = RealmOptional<Int>()
     let id = RealmOptional<Int>()
     let value = RealmOptional<Int>()
     let video = RealmOptional<Bool>()
-    let vote_average = RealmOptional<Double>()
+    let voteAverage = RealmOptional<Double>()
     @objc dynamic var title: String?
     let popularity = RealmOptional<Double>()
-    @objc dynamic var poster_path: String?
-    @objc dynamic var original_language: String?
-    @objc dynamic var original_title: String?
+    @objc dynamic var posterPath: String?
+    @objc dynamic var originalLanguage: String?
+    @objc dynamic var originalTitle: String?
     @objc dynamic var overview: String?
     @objc dynamic var rewritedetailMovieResponce: DetailMovieEntry?
 

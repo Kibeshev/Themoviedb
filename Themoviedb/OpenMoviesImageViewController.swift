@@ -22,7 +22,7 @@ class OpenMoviesImageViewController: UIViewController {
             updateUI()
         }
     }
-    var movies2: Movie?
+    var movie: Movie?
 
     // MARK: - UIViewController
 
@@ -43,7 +43,7 @@ class OpenMoviesImageViewController: UIViewController {
     // MARK: - Private methods
 
     private func getImage() {
-        if let image = movies2?.posterPath {
+        if let image = movie?.posterPath {
             if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)"),
                 let imageView = openImage {
                 Nuke.loadImage(with: imageURL, into: imageView )

@@ -32,7 +32,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Properties
 
-    var movies: Movie?
+    var movie: Movie?
     private let heartButton = UIButton()
     private var detailMovie: DetailMovieResponse?
     private var detailManager = MoviesAPIManager()
@@ -78,7 +78,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         self.navigationController?.pushViewController(controller, animated: true)
-        controller.movies = self.movies
+        controller.movies = self.movie
     }
 
     @objc
@@ -89,7 +89,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         self.navigationController?.pushViewController(controller, animated: true)
-        controller.movies2 = self.movies
+        controller.movie = self.movie
     }
 
     // MARK: - Private methods
@@ -101,11 +101,11 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
             heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
             let barButton = UIBarButtonItem(customView: heartButton)
             self.navigationItem.rightBarButtonItem = barButton
-            movieDatabaseModel.original_title = movies?.originalTitle
-            movieDatabaseModel.overview = movies?.overview
-            movieDatabaseModel.original_language = movies?.originalLanguage
-            movieDatabaseModel.poster_path = movies?.posterPath
-            movieDatabaseModel.id.value = movies?.id
+            movieDatabaseModel.originalTitle = movie?.originalTitle
+            movieDatabaseModel.overview = movie?.overview
+            movieDatabaseModel.originalLanguage = movie?.originalLanguage
+            movieDatabaseModel.posterPath = movie?.posterPath
+            movieDatabaseModel.id.value = movie?.id
             try? realm?.write {
                 realm?.add(movieDatabaseModel)
             }
@@ -118,7 +118,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
                 heartButton.setImage(UIImage(named: "addFavorites"), for: .normal)
                 let barButton = UIBarButtonItem(customView: heartButton)
                 self.navigationItem.rightBarButtonItem = barButton
-                if element.id.value == movies?.id {
+                if element.id.value == movie?.id {
                     try? realm?.write {
                         realm?.delete(element)
                     }
@@ -138,9 +138,9 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
         detailScreenImageMovies.isUserInteractionEnabled = true
         detailScreenImageMovies.addGestureRecognizer(tapGestureRecognizer)
-        descriptionsLabel.text = movies?.overview
-        nameMoviesDetailScreen.text = movies?.originalTitle
-        if let image = movies?.posterPath,
+        descriptionsLabel.text = movie?.overview
+        nameMoviesDetailScreen.text = movie?.originalTitle
+        if let image = movie?.posterPath,
             let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)") {
             Nuke.loadImage(with: imageURL, into: detailScreenImageMovies)
         }
@@ -163,7 +163,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         guard let realmObjects = realm?.objects(MovieEntry.self) else {
             return }
         for element in realmObjects {
-            if element.id.value == movies?.id {
+            if element.id.value == movie?.id {
                 heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
                 let barButton = UIBarButtonItem(customView: heartButton)
                 self.navigationItem.rightBarButtonItem = barButton
@@ -173,7 +173,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func loadData() {
-        guard let id = movies?.id else {
+        guard let id = movie?.id else {
            return
         }
         let url = """

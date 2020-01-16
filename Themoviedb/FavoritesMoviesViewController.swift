@@ -56,9 +56,9 @@ class FavoritesMoviesViewController: UIViewController {
                     voteAverage: nil,
                     title: element.title,
                     popularity: nil,
-                    posterPath: element.poster_path,
-                    originalLanguage: element.original_language,
-                    originalTitle: element.original_title,
+                    posterPath: element.posterPath,
+                    originalLanguage: element.originalLanguage,
+                    originalTitle: element.originalTitle,
                     overview: element.overview,
                     detailMovieResponce: nil
                 )

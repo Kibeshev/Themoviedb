@@ -107,7 +107,7 @@ extension SearchMoviesViewController: UISearchBarDelegate {
         }
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
-        controller.movies = self.searchMovies[indexPath.row]
+        controller.movie = self.searchMovies[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
