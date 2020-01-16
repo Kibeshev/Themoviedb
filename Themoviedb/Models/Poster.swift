@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Posters: Codable {
-    let file_path: String?
-    let aspect_ratio: Double?
+struct Poster: Codable {
+    let filePath: String?
+    let aspectRatio: Double?
 }

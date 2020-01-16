@@ -28,9 +28,9 @@ class MoviesCell: UITableViewCell {
     // MARK: - Methods
 
     func configure(movie: Movie) {
-        labelTitle.text = movie.original_title
+        labelTitle.text = movie.originalTitle
         labelDescriptions.text = movie.overview
-        if let image = movie.poster_path {
+        if let image = movie.posterPath {
             if let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)") {
                 Nuke.loadImage(with: imageURL, into: imageMovies)
             }

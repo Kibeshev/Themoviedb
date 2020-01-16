@@ -96,22 +96,22 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     private func updateFavoritesState() {
         let realm = try? Realm()
-        let movieDatabaseModel = MovieDatabaseModel()
+        let movieDatabaseModel = MovieEntry()
         if isAddedToFavorites == false {
             heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
             let barButton = UIBarButtonItem(customView: heartButton)
             self.navigationItem.rightBarButtonItem = barButton
-            movieDatabaseModel.original_title = movies?.original_title
+            movieDatabaseModel.original_title = movies?.originalTitle
             movieDatabaseModel.overview = movies?.overview
-            movieDatabaseModel.original_language = movies?.original_language
-            movieDatabaseModel.poster_path = movies?.poster_path
+            movieDatabaseModel.original_language = movies?.originalLanguage
+            movieDatabaseModel.poster_path = movies?.posterPath
             movieDatabaseModel.id.value = movies?.id
             try? realm?.write {
                 realm?.add(movieDatabaseModel)
             }
             isAddedToFavorites = true
         } else {
-            guard let rewriteMovieDataBase = realm?.objects(MovieDatabaseModel.self) else {
+            guard let rewriteMovieDataBase = realm?.objects(MovieEntry.self) else {
                 return
             }
             for element in rewriteMovieDataBase {
@@ -139,8 +139,8 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         detailScreenImageMovies.isUserInteractionEnabled = true
         detailScreenImageMovies.addGestureRecognizer(tapGestureRecognizer)
         descriptionsLabel.text = movies?.overview
-        nameMoviesDetailScreen.text = movies?.original_title
-        if let image = movies?.poster_path,
+        nameMoviesDetailScreen.text = movies?.originalTitle
+        if let image = movies?.posterPath,
             let imageURL = URL(string: "\("https://image.tmdb.org/t/p/w500")\(image)") {
             Nuke.loadImage(with: imageURL, into: detailScreenImageMovies)
         }
@@ -160,7 +160,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.rightBarButtonItem = barButton
 
         let realm = try? Realm()
-        guard let realmObjects = realm?.objects(MovieDatabaseModel.self) else {
+        guard let realmObjects = realm?.objects(MovieEntry.self) else {
             return }
         for element in realmObjects {
             if element.id.value == movies?.id {
@@ -180,16 +180,16 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
         https://api.themoviedb.org/3/movie/\(id)?api_key=4cb1eeab94f45affe2536f2c684a5c9e&append_to_response=videos
         """
 
-        detailManager.detailGetMovie(urlString: url, completion: { [weak self] detailMovieResponce in
+        detailManager.detailGetMovie(urlString: url, completion: { [weak self] detailMovieResponse in
                 guard let self = self else {
-                return
+                    return
                 }
                 DispatchQueue.main.async {
-                    self.originalLanguageLabel?.text = detailMovieResponce?.original_language
-                    self.fillBudget(budget: detailMovieResponce?.budget)
-                    self.fillRevenue(revenue: detailMovieResponce?.revenue)
-                    self.fillRunrime(runtime: detailMovieResponce?.runtime)
-                    self.detailMovie = detailMovieResponce
+                    self.originalLanguageLabel?.text = detailMovieResponse?.originalLanguage
+                    self.fillBudget(budget: detailMovieResponse?.budget)
+                    self.fillRevenue(revenue: detailMovieResponse?.revenue)
+                    self.fillRunrime(runtime: detailMovieResponse?.runtime)
+                    self.detailMovie = detailMovieResponse
                 }
         })
     }

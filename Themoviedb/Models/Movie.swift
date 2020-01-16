@@ -9,15 +9,15 @@
 import Foundation
 
 struct Movie: Codable {
-    let vote_count: Int?
+    let voteCount: Int?
     let id: Int?
     let video: Bool
-    let vote_average: Double?
+    let voteAverage: Double?
     let title: String?
     let popularity: Double?
-    let poster_path: String?
-    let original_language: String?
-    let original_title: String?
+    let posterPath: String?
+    let originalLanguage: String?
+    let originalTitle: String?
     let overview: String?
     let detailMovieResponce: DetailMovieResponse?
 }

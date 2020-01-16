@@ -52,8 +52,8 @@ class WebViewController: UIViewController {
             let myURL = URL(string: "http://youtube.com/watch?v=\(key)") else {
             return
         }
-            let myRequest = URLRequest(url: myURL)
-            webView?.load(myRequest)
+            let request = URLRequest(url: myURL)
+            webView?.load(request)
             activityIndicator.startAnimating()
     }
 }

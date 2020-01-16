@@ -10,8 +10,8 @@ import Foundation
 
 struct GetPopularMoviesResponse: Codable {
     let page: Int?
-    let total_results: Int?
-    let total_pages: Int?
+    let totalResults: Int?
+    let totalPages: Int?
     let results: [Movie]?
-    let session_id: String?
+    let sessionId: String?
 }

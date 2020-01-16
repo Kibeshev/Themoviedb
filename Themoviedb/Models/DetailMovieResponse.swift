@@ -9,10 +9,10 @@
 import Foundation
 
 struct DetailMovieResponse: Codable {
-    let original_language: String?
+    let originalLanguage: String?
     let budget: Int?
     let revenue: Int?
     let videos: VideosResponse?
-    let image: [Posters]?
+    let image: [Poster]?
     let runtime: Int?
 }

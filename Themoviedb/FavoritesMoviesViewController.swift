@@ -47,18 +47,18 @@ class FavoritesMoviesViewController: UIViewController {
         var array: [Movie] = []
         do {
             let realm = try Realm()
-            let realmObjects = realm.objects(MovieDatabaseModel.self)
+            let realmObjects = realm.objects(MovieEntry.self)
             for element in realmObjects {
                 let movie = Movie(
-                    vote_count: nil,
+                    voteCount: nil,
                     id: element.id.value,
                     video: false,
-                    vote_average: nil,
+                    voteAverage: nil,
                     title: element.title,
                     popularity: nil,
-                    poster_path: element.poster_path,
-                    original_language: element.original_language,
-                    original_title: element.original_title,
+                    posterPath: element.poster_path,
+                    originalLanguage: element.original_language,
+                    originalTitle: element.original_title,
                     overview: element.overview,
                     detailMovieResponce: nil
                 )
@@ -112,7 +112,7 @@ extension FavoritesMoviesViewController: UITableViewDataSource {
         ) {
             do {
                 let realm = try Realm()
-                let realmObjects = realm.objects(MovieDatabaseModel.self)
+                let realmObjects = realm.objects(MovieEntry.self)
                 for element in realmObjects {
                     if element.id.value == favoriteMovies[indexPath.row].id {
                         try realm.write {

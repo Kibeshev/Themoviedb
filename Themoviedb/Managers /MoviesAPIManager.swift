@@ -25,6 +25,7 @@ class MoviesAPIManager {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let rawResponse = try? decoder.decode(GetMovieImagesResponse.self, from: data) {
                     completion(rawResponse)
                     return
@@ -45,6 +46,7 @@ class MoviesAPIManager {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let rawResponse = try? decoder.decode(DetailMovieResponse.self, from: data) {
                     completion(rawResponse)
                     return
@@ -65,6 +67,7 @@ class MoviesAPIManager {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let rawResponse = try? decoder.decode(GetPopularMoviesResponse.self, from: data) {
                     completion(rawResponse)
                     return

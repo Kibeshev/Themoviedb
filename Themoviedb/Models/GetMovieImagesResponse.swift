@@ -9,5 +9,5 @@
 import Foundation
 
 struct GetMovieImagesResponse: Codable {
-    let posters: [Posters]
+    let posters: [Poster]
 }

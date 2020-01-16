@@ -19,7 +19,7 @@ class ImagesCarouselViewController: UIViewController {
 
     var movies: Movie?
     private var detailManager = MoviesAPIManager()
-    private var apsectRatio: Posters?
+    private var apsectRatio: Poster?
     private var isOn = false {
         didSet {
             updateUI()
@@ -67,11 +67,11 @@ class ImagesCarouselViewController: UIViewController {
                             imageCarousel.contentMode = .scaleAspectFit
                             imageCarousel.isUserInteractionEnabled = true
                             let width = windowWidth
-                            let height = width / CGFloat(images[i].aspect_ratio ?? 0.8)
+                            let height = width / CGFloat(images[i].aspectRatio ?? 0.8)
                             let yOrirgin = (self.scrollImages.bounds.height - height) / 2
                             imageCarousel.frame = CGRect(x: xOrigin, y: yOrirgin, width: width, height: height)
                             self.scrollImages.addSubview(imageCarousel)
-                            if let urlStr = images[i].file_path {
+                            if let urlStr = images[i].filePath {
                                 if let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(urlStr)") {
                                     Nuke.loadImage(with: imageURL, into: imageCarousel )
                                 }

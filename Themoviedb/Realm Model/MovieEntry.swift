@@ -1,5 +1,5 @@
 //
-//  movieEntry.swift
+//  MovieEntry.swift
 //  Themoviedb
 //
 //  Created by Кирилл Кибешев on 31/07/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class MovieDatabaseModel: Object {
+class MovieEntry: Object {
 
     let vote_count = RealmOptional<Int>()
     let id = RealmOptional<Int>()
@@ -22,17 +22,9 @@ class MovieDatabaseModel: Object {
     @objc dynamic var original_language: String?
     @objc dynamic var original_title: String?
     @objc dynamic var overview: String?
-    @objc dynamic var rewritedetailMovieResponce: DetailMovieResponseDatabaseModel?
+    @objc dynamic var rewritedetailMovieResponce: DetailMovieEntry?
 
     override static func primaryKey() -> String? {
         return "id"
     }
-}
-
-class DetailMovieResponseDatabaseModel: Object {
-
-    @objc dynamic var original_language: String?
-    let budget = RealmOptional<Int>()
-    let revenue = RealmOptional<Int>()
-    let runtime = RealmOptional<Int>()
 }
