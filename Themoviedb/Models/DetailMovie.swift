@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DetailMovieResponse: Codable {
+struct DetailMovie: Codable {
     let originalLanguage: String?
     let budget: Int?
     let revenue: Int?

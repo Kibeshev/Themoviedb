@@ -17,7 +17,7 @@ class ImagesCarouselViewController: UIViewController {
 
     // MARK: - Properties
 
-    var movies: Movie?
+    var movie: Movie?
     private var detailManager = MoviesAPIManager()
     private var apsectRatio: Poster?
     private var isOn = false {
@@ -50,7 +50,7 @@ class ImagesCarouselViewController: UIViewController {
     }
 
     private func getImages() {
-        if let moviesID = movies?.id {
+        if let moviesID = movie?.id {
             // получаем данные с сервера для нужного фильма
             detailManager.getMovieImages(id: moviesID, completion: { [weak self] getImagesCaruseleResponce in
                 guard let self = self else {

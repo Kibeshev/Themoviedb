@@ -34,7 +34,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     var movie: Movie?
     private let heartButton = UIButton()
-    private var detailMovie: DetailMovieResponse?
+    private var detailMovie: DetailMovie?
     private var detailManager = MoviesAPIManager()
     private var formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -78,7 +78,7 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         self.navigationController?.pushViewController(controller, animated: true)
-        controller.movies = self.movie
+        controller.movie = self.movie
     }
 
     @objc
@@ -96,18 +96,23 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate {
 
     private func updateFavoritesState() {
         let realm = try? Realm()
-        let movieDatabaseModel = MovieEntry()
         if isAddedToFavorites == false {
             heartButton.setImage(UIImage(named: "favoritesButton"), for: .normal)
             let barButton = UIBarButtonItem(customView: heartButton)
             self.navigationItem.rightBarButtonItem = barButton
+            let movieDatabaseModel = MovieEntry()
             movieDatabaseModel.originalTitle = movie?.originalTitle
             movieDatabaseModel.overview = movie?.overview
             movieDatabaseModel.originalLanguage = movie?.originalLanguage
             movieDatabaseModel.posterPath = movie?.posterPath
             movieDatabaseModel.id.value = movie?.id
+            let detailMovieEntry = DetailMovieEntry()
+            detailMovieEntry.budget.value = detailMovie?.budget
+            detailMovieEntry.runtime.value = detailMovie?.runtime
+            detailMovieEntry.originalLanguage = detailMovie?.originalLanguage
             try? realm?.write {
                 realm?.add(movieDatabaseModel)
+                realm?.add(detailMovieEntry)
             }
             isAddedToFavorites = true
         } else {

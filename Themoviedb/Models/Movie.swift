@@ -19,5 +19,4 @@ struct Movie: Codable {
     let originalLanguage: String?
     let originalTitle: String?
     let overview: String?
-    let detailMovieResponce: DetailMovieResponse?
 }

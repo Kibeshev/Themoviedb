@@ -36,7 +36,7 @@ class MoviesAPIManager {
         task.resume()
     }
 
-    func detailGetMovie(urlString: String, completion: @escaping (DetailMovieResponse?) -> Void) {
+    func detailGetMovie(urlString: String, completion: @escaping (DetailMovie?) -> Void) {
 
         guard let url = URL(string: urlString) else {
             completion(nil)
@@ -47,7 +47,7 @@ class MoviesAPIManager {
             if let data = data {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let rawResponse = try? decoder.decode(DetailMovieResponse.self, from: data) {
+                if let rawResponse = try? decoder.decode(DetailMovie.self, from: data) {
                     completion(rawResponse)
                     return
                 }

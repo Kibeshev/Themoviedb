@@ -59,8 +59,7 @@ class FavoritesMoviesViewController: UIViewController {
                     posterPath: element.posterPath,
                     originalLanguage: element.originalLanguage,
                     originalTitle: element.originalTitle,
-                    overview: element.overview,
-                    detailMovieResponce: nil
+                    overview: element.overview
                 )
                 array.append(movie)
             }
@@ -86,6 +85,21 @@ class FavoritesMoviesViewController: UIViewController {
 // MARK: - UITableViewDelegate
 
 extension FavoritesMoviesViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard
+            let controller = storyboard.instantiateViewController(
+                withIdentifier: "DetailViewController"
+            ) as? MovieDetailViewController
+        else {
+            return
+        }
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
+        controller.movie = self.favoriteMovies[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }
 
